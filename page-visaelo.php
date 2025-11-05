@@ -267,7 +267,7 @@ get_header(); ?>
                     </div>
                     <div class="easy-process-content">
                         <div class="easy-process-header">
-                            <div class="brand-icon easy-process-icon">
+                            <div class="brand-icon">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_trust.png" alt="Shield icon">
                             </div>
                             <h2 class="easy-process-title">Our easy process</h2>
@@ -307,7 +307,7 @@ get_header(); ?>
                 <div class="testimonials-section-header">
                     <div class="testimonials-section-title-wrapper">
                         <div class="testimonials-section-icon-wrapper">
-                            <div class="brand-icon testimonials-section-icon">
+                            <div class="brand-icon">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_shield.png" alt="Shield icon">
                             </div>
                             <span class="testimonials-section-label">Stories worldwide</span>
@@ -416,36 +416,105 @@ get_header(); ?>
             <div class="when-the-world">
                 <div class="when-the-world-container">
                     <div class="when-the-world-content">
-                        <div class="when-the-world-header">
-                            <div class="when-the-world-icon-wrapper">
-                                <div class="when-the-world-icon-bg">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_shield.png" alt="Shield" class="when-the-world-icon-shield">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_star.png" alt="Star" class="when-the-world-icon-star">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_paper_plane.png" alt="Paper plane" class="when-the-world-icon-plane">
+                        <div class="when-the-world-top-section">
+                            <div class="when-the-world-header">
+                                <div class="brand-icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_shield.png" alt="Shield icon">
                                 </div>
+                                <span class="when-the-world-header-text">Itinerary in the world</span>
                             </div>
-                            <span class="when-the-world-header-text">Itinerary in the world</span>
+                            <h2 class="when-the-world-headline">
+                                When the world was the itinerary, we delivered.
+                            </h2>
                         </div>
-                        <h2 class="when-the-world-headline">
-                            When the world was the itinerary, we delivered.
-                        </h2>
-                        <div class="when-the-world-cta">
-                            <button class="icon-btn icon-btn-primary icon-btn-md when-the-world-btn">
-                                <span class="icon-btn-icon icon-btn-icon-left">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_turn_right.png" alt="" style="width: 16px; height: 16px;">
-                                </span>
-                                <span class="icon-btn-text">Get started</span>
-                            </button>
+                        <div class="when-the-world-bottom-section">
+                            <div class="when-the-world-cta">
+                                <button class="icon-btn icon-btn-primary icon-btn-md when-the-world-btn">
+                                    <span class="icon-btn-icon icon-btn-icon-left">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_turn_right.png" alt="" style="width: 16px; height: 16px;">
+                                    </span>
+                                    <span class="icon-btn-text">Get started</span>
+                                </button>
+                            </div>
+                            <p class="when-the-world-text">
+                                Someone visited every country on Earth in just 499 days — with our visa support. Your plan doesn't have to be that extreme, but we'll treat it like it is.
+                            </p>
                         </div>
-                        <p class="when-the-world-text">
-                            Someone visited every country on Earth in just 499 days — with our visa support. Your plan doesn't have to be that extreme, but we'll treat it like it is.
-                        </p>
                     </div>
                     <div class="when-the-world-image-wrapper">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/backgrounds/when_the_world.png" alt="Traveler in mountains" class="when-the-world-image">
                     </div>
                 </div>
             </div>
+
+            <!-- INC 5000 Banner Section -->
+            <div class="inc-5000-banner">
+                <div class="inc-5000-container">
+                    <div class="inc-5000-content">
+                        <h2 class="inc-5000-title">Officially Ranked on the INC 5000</h2>
+                        <p class="inc-5000-subtitle">Our growth isn't just impressive—it's nationally recognized.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Signup CTA Banner -->
+            <div class="email-signup-banner">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/backgrounds/signup_for_travel.png" alt="Travel illustration" class="email-signup-image">
+                <div class="email-signup-container">
+                    <div class="email-signup-left">
+                        <div class="email-signup-content">
+                            <h2 class="email-signup-title">Travel easy, go anywhere</h2>
+                            <p class="email-signup-subtitle">Sign up for travel tips, visa alerts, and exclusive deals.</p>
+                        </div>
+                    </div>
+                    <div class="email-signup-form-wrapper">
+                        <form class="email-signup-form">
+                            <input type="email" placeholder="Write your email" class="email-signup-input" required>
+                            <button type="submit" class="email-signup-submit">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/icons/icon_paper_plane.png" alt="Submit" class="email-signup-icon">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Section -->
+            <footer class="visaelo-footer">
+                <div class="footer-container">
+                    <div class="footer-brand">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/icons/footer_logo.png" alt="visaelo" class="footer-logo">
+                        <p class="footer-description">Visaelo makes global travel simpler with fast, reliable visa processing and expert support.</p>
+                    </div>
+                    <div class="footer-nav">
+                        <div class="footer-nav-column">
+                            <h3 class="footer-nav-title">Popular Travel Visas</h3>
+                            <ul class="footer-nav-links">
+                                <li><a href="#" class="footer-nav-link">Visaelo Plus</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-nav-column">
+                            <h3 class="footer-nav-title">Company</h3>
+                            <ul class="footer-nav-links">
+                                <li><a href="#" class="footer-nav-link">About Us</a></li>
+                                <li><a href="#" class="footer-nav-link">Careers</a></li>
+                                <li><a href="#" class="footer-nav-link">Get visa updates</a></li>
+                                <li><a href="#" class="footer-nav-link">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-nav-column">
+                            <h3 class="footer-nav-title">Help Center</h3>
+                            <ul class="footer-nav-links">
+                                <li><a href="#" class="footer-nav-link">Testimonials</a></li>
+                                <li><a href="#" class="footer-nav-link">Partnerships</a></li>
+                                <li><a href="#" class="footer-nav-link">Refer a Friend</a></li>
+                                <li><a href="#" class="footer-nav-link">Privacy Choices</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-separator"></div>
+                <p class="footer-copyright">© 2014-2025 Visaelo. All rights reserved.</p>
+            </footer>
         </div>
     </main>
 </div>

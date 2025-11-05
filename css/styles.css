@@ -1229,8 +1229,8 @@ code {
 .when-the-world-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 60px 40px;
+  justify-content: space-between;
+  padding: 140px 80px;
   height: 100%;
   background-color: white;
   border-radius: 24px;
@@ -1290,16 +1290,15 @@ code {
 }
 
 .when-the-world-header-text {
-  font-size: 16px;
+  font-size: 28px;
   font-weight: 500;
   color: #1a1a1a;
   font-family: var(--font-family-base);
 }
 
 .when-the-world-headline {
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 700;
-  color: #003d99;
   line-height: 1.2;
   margin: 0 0 32px 0;
   font-family: var(--font-family-base);
@@ -1324,11 +1323,12 @@ code {
 }
 
 .when-the-world-text {
-  font-size: 18px;
+  font-size: 24px;
   color: #4b5563;
   line-height: 1.6;
   margin: 0;
   font-family: var(--font-family-base);
+  width: 80%;
 }
 
 .when-the-world-image-wrapper {
@@ -1345,6 +1345,314 @@ code {
   object-fit: cover;
   border-radius: 16px;
   display: block;
+}
+
+/* ============================================
+   INC 5000 BANNER SECTION
+   ============================================ */
+.inc-5000-banner {
+  background: #ffffff;
+  padding: 80px 0;
+  border-radius: 16px;
+}
+
+.inc-5000-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.inc-5000-content {
+  flex: 1;
+  text-align: center;
+  z-index: 2;
+}
+
+.inc-5000-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+  font-family: var(--font-family-base);
+}
+
+.inc-5000-subtitle {
+  font-size: 20px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+  font-family: var(--font-family-base);
+}
+
+.inc-5000-graphic {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.inc-5000-arc {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.inc-5000-arc-1 {
+  width: 150px;
+  height: 150px;
+  border-top: 3px solid;
+  border-right: 3px solid;
+  border-top-color: #60a5fa;
+  border-right-color: #34d399;
+  top: 0;
+  right: 0;
+}
+
+.inc-5000-arc-2 {
+  width: 120px;
+  height: 120px;
+  border-top: 3px solid;
+  border-right: 3px solid;
+  border-top-color: #34d399;
+  border-right-color: #60a5fa;
+  top: 20px;
+  right: 20px;
+}
+
+/* ============================================
+   EMAIL SIGNUP CTA BANNER
+   ============================================ */
+.email-signup-banner {
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.email-signup-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.email-signup-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.email-signup-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.email-signup-graphic {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.email-signup-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.email-signup-content {
+  color: white;
+}
+
+.email-signup-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+  font-family: var(--font-family-base);
+}
+
+.email-signup-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.5;
+  font-family: var(--font-family-base);
+}
+
+.email-signup-form-wrapper {
+  flex-shrink: 0;
+}
+
+.email-signup-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.email-signup-input {
+  padding: 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: var(--font-family-base);
+  min-width: 280px;
+  background: white;
+  color: #1f2937;
+}
+
+.email-signup-input::placeholder {
+  color: #9ca3af;
+}
+
+.email-signup-input:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.email-signup-submit {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 8px;
+  background: #1e40af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.email-signup-submit:hover {
+  background: #1e3a8a;
+}
+
+.email-signup-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================
+   FOOTER SECTION
+   ============================================ */
+.visaelo-footer {
+  background: #001530;
+  padding: 80px 0 32px;
+  border-radius: 16px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 64px;
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-logo {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 40px;
+  margin-bottom: 16px;
+}
+
+.footer-description {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  font-family: var(--font-family-base);
+  width: 40%;
+}
+
+.footer-separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 40px 64px 24px;
+}
+
+.footer-copyright {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 64px;
+  font-family: var(--font-family-base);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-nav-column {
+  min-width: 150px;
+}
+
+.footer-nav-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 24px 0;
+  font-family: var(--font-family-base);
+}
+
+.footer-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-nav-links li {
+  margin-bottom: 12px;
+}
+
+.footer-nav-link {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: var(--font-family-base);
+  display: inline-block;
+}
+
+.footer-nav-link:hover {
+  color: white;
 }
 
 /* ============================================
@@ -1383,6 +1691,30 @@ code {
 
   .when-the-world-headline {
     font-size: 40px;
+  }
+
+  .inc-5000-title {
+    font-size: 36px;
+  }
+
+  .inc-5000-graphic {
+    width: 150px;
+    height: 150px;
+    right: 16px;
+  }
+
+  .email-signup-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .email-signup-title {
+    font-size: 36px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 40px;
   }
 }
 
@@ -1567,6 +1899,100 @@ code {
 
   .when-the-world-text {
     font-size: 16px;
+  }
+
+  .inc-5000-banner {
+    padding: 60px 0;
+    margin: 24px 0;
+  }
+
+  .inc-5000-container {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .inc-5000-content {
+    text-align: center;
+  }
+
+  .inc-5000-title {
+    font-size: 28px;
+  }
+
+  .inc-5000-subtitle {
+    font-size: 16px;
+  }
+
+  .inc-5000-graphic {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .email-signup-banner {
+    padding: 60px 0;
+    margin: 24px 0;
+  }
+
+  .email-signup-container {
+    padding: 0 20px;
+  }
+
+  .email-signup-title {
+    font-size: 28px;
+  }
+
+  .email-signup-subtitle {
+    font-size: 16px;
+  }
+
+  .email-signup-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .email-signup-input {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .email-signup-submit {
+    width: 100%;
+    height: 52px;
+  }
+
+  .visaelo-footer {
+    padding: 60px 0 24px;
+    margin: 24px 0 0;
+  }
+
+  .footer-container {
+    padding: 0 20px;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    min-width: auto;
+  }
+
+  .footer-logo {
+    max-height: 36px;
+  }
+
+  .footer-description {
+    font-size: 14px;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-nav-column {
+    min-width: auto;
   }
 }
 
