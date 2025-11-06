@@ -221,15 +221,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 3: Continue button (final step - could submit form or go to payment)
+  // Step 3: Continue button (go to review order step)
   const checkoutContinueBtn = document.getElementById('checkout-continue-btn');
   if (checkoutContinueBtn) {
     checkoutContinueBtn.addEventListener('click', () => {
-      // TODO: Submit form or navigate to payment page
-      console.log('Checkout complete - ready to submit');
-      alert('Checkout complete! This would normally proceed to payment.');
+      const passportTravelers = document.querySelectorAll('[data-passport-traveler]');
+      const travelerCount = passportTravelers.length;
+      const selectedProcessing = document.querySelector('input[name="processing-time"]:checked')?.value || 'rush';
+      showStep(4, { numberOfApplicants: travelerCount, processingType: selectedProcessing });
     });
   }
+
+  // Step 4: Previous button (go back to checkout)
+  const reviewPreviousBtn = document.getElementById('review-previous-btn');
+  if (reviewPreviousBtn) {
+    reviewPreviousBtn.addEventListener('click', () => {
+      const passportTravelers = document.querySelectorAll('[data-passport-traveler]');
+      const travelerCount = passportTravelers.length;
+      showStep(3, { numberOfApplicants: travelerCount });
+    });
+  }
+
+  // Step 4: Continue to payment button
+  const reviewContinueBtn = document.getElementById('review-continue-btn');
+  if (reviewContinueBtn) {
+    reviewContinueBtn.addEventListener('click', () => {
+      // TODO: Navigate to payment page
+      console.log('Review complete - ready for payment');
+      alert('Review complete! This would normally proceed to payment.');
+    });
+  }
+
 });
 
 // Store traveler data globally
@@ -275,6 +297,11 @@ function showStep(stepNumber, formData = null) {
     if (stepNumber === 3) {
       initializeCheckout(formData);
     }
+    
+    // Initialize review order for step 4
+    if (stepNumber === 4) {
+      initializeReviewOrder(formData);
+    }
   }
 
   // Update progress indicator
@@ -292,6 +319,8 @@ function showStep(stepNumber, formData = null) {
     updateSidebarPassport(formData);
   } else if (stepNumber === 3) {
     updateSidebarCheckout(formData);
+  } else if (stepNumber === 4) {
+    updateSidebarReview(formData);
   }
 }
 
@@ -312,6 +341,7 @@ function updateProgressIndicator(currentStep) {
     const stepIndex = index + 1;
     const circle = step.querySelector('.app-progress-step-circle');
     const dot = step.querySelector('.app-progress-step-dot');
+    const existingCheckmark = circle.querySelector('svg.checkmark');
     
     // Reset all steps
     step.classList.remove('app-progress-step-active');
@@ -328,12 +358,7 @@ function updateProgressIndicator(currentStep) {
         dot.style.display = 'none';
       }
       // Add checkmark if not present
-      if (!circle.querySelector('svg.checkmark')) {
-        // Remove any existing SVG
-        const existingSvg = circle.querySelector('svg');
-        if (existingSvg && !existingSvg.classList.contains('checkmark')) {
-          existingSvg.remove();
-        }
+      if (!existingCheckmark) {
         const checkmark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         checkmark.setAttribute('width', '16');
         checkmark.setAttribute('height', '16');
@@ -350,7 +375,10 @@ function updateProgressIndicator(currentStep) {
         circle.appendChild(checkmark);
       }
     } else if (stepIndex === stepNum) {
-      // Current step
+      // Current step - remove checkmark if present
+      if (existingCheckmark) {
+        existingCheckmark.remove();
+      }
       step.classList.add('app-progress-step-active');
       circle.style.borderColor = '#3b82f6';
       circle.style.backgroundColor = '#ffffff';
@@ -363,7 +391,10 @@ function updateProgressIndicator(currentStep) {
         circle.appendChild(newDot);
       }
     } else {
-      // Future step
+      // Future step - remove checkmark if present
+      if (existingCheckmark) {
+        existingCheckmark.remove();
+      }
       circle.style.borderColor = '#eff2f6';
       circle.style.backgroundColor = '#ffffff';
       if (dot) dot.style.display = 'none';
@@ -393,6 +424,8 @@ function updateProgressIndicator(currentStep) {
 function updatePageTitle(stepNumber) {
   const titleElement = document.querySelector('.app-title');
   const subtitleElement = document.querySelector('.app-subtitle');
+  const introSection = document.querySelector('.app-intro');
+  const progressSection = document.querySelector('.app-progress');
   
   if (!titleElement) return;
 
@@ -401,10 +434,34 @@ function updatePageTitle(stepNumber) {
     if (subtitleElement) {
       subtitleElement.style.display = 'block';
     }
+    if (introSection) {
+      introSection.style.display = 'block';
+    }
+    if (progressSection) {
+      progressSection.style.display = 'flex';
+    }
   } else if (stepNumber === 2 || stepNumber === '2b' || stepNumber === 3) {
     titleElement.textContent = 'United Kingdom ETA';
     if (subtitleElement) {
       subtitleElement.style.display = 'none';
+    }
+    if (introSection) {
+      introSection.style.display = 'block';
+    }
+    if (progressSection) {
+      progressSection.style.display = 'flex';
+    }
+  } else if (stepNumber === 4) {
+    // Show title for review order step, hide progress
+    titleElement.textContent = 'Review your order';
+    if (subtitleElement) {
+      subtitleElement.style.display = 'none';
+    }
+    if (introSection) {
+      introSection.style.display = 'block';
+    }
+    if (progressSection) {
+      progressSection.style.display = 'none';
     }
   }
 }
@@ -1039,5 +1096,151 @@ function initializeCheckout(formData) {
 // Function to update sidebar for checkout step
 function updateSidebarCheckout(formData) {
   initializeCheckout(formData);
+}
+
+// Function to initialize review order step
+function initializeReviewOrder(formData) {
+  const travelerCount = formData?.numberOfApplicants || travelerData.count || 1;
+  const processingType = formData?.processingType || 'rush';
+  const pricing = processingPricing[processingType] || processingPricing.rush;
+  
+  // Store data for protection plan calculation
+  travelerData.count = travelerCount;
+  travelerData.processingType = processingType;
+  
+  // Get traveler names from step 2
+  const travelerNames = [];
+  const step2TravelerCards = document.querySelectorAll('#step-2 .app-traveler-card');
+  step2TravelerCards.forEach((card, index) => {
+    const travelerNum = index + 1;
+    const firstName = document.getElementById(`traveler-${travelerNum}-firstname`)?.value?.trim() || '';
+    const lastName = document.getElementById(`traveler-${travelerNum}-lastname`)?.value?.trim() || '';
+    if (firstName && lastName) {
+      travelerNames.push(firstName);
+    }
+  });
+  
+  // Update delivery information
+  const expectedDate = document.getElementById('review-expected-date');
+  if (expectedDate) {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    expectedDate.textContent = `Expected by: Today by ${displayHours}:${displayMinutes} ${ampm}`;
+  }
+  
+  const deliveryType = document.getElementById('review-delivery-type');
+  if (deliveryType) {
+    const deliveryLabels = {
+      'standard': 'Standard delivery',
+      'rush': 'Rush delivery',
+      'super-rush': 'Ultra Rush delivery'
+    };
+    deliveryType.textContent = deliveryLabels[processingType] || 'Rush delivery';
+  }
+  
+  // Update travelers names
+  const travelersNamesEl = document.getElementById('review-travelers-names');
+  if (travelersNamesEl) {
+    if (travelerNames.length > 0) {
+      travelersNamesEl.textContent = travelerNames.join(', ');
+    } else {
+      const travelersText = travelerCount === 1 ? '1 Traveler' : `${travelerCount} Travelers`;
+      travelersNamesEl.textContent = travelersText;
+    }
+  }
+  
+  // Update order summary
+  const summaryTravelers = document.getElementById('review-summary-travelers');
+  if (summaryTravelers) {
+    summaryTravelers.textContent = travelerCount === 1 ? '1 Traveler' : `${travelerCount} Travelers`;
+  }
+  
+  const summaryFees = document.getElementById('review-summary-fees');
+  if (summaryFees) {
+    const govFee = 22.66;
+    const totalGovFee = (govFee * travelerCount).toFixed(2);
+    summaryFees.textContent = `$${totalGovFee}`;
+  }
+  
+  const processingLabel = document.getElementById('review-processing-label');
+  const processingPrice = document.getElementById('review-processing-price');
+  if (processingLabel) {
+    processingLabel.textContent = pricing.label;
+  }
+  if (processingPrice) {
+    const processingPriceTotal = (pricing.price * travelerCount).toFixed(2);
+    processingPrice.textContent = `$${processingPriceTotal}`;
+  }
+  
+  const total = document.getElementById('review-total');
+  if (total) {
+    const govFee = 22.66;
+    const totalAmount = ((govFee + pricing.price) * travelerCount).toFixed(2);
+    total.textContent = `USD $${totalAmount}`;
+  }
+  
+  // Update protection plan refund amount
+  const protectionRefund = document.getElementById('review-protection-refund');
+  if (protectionRefund) {
+    const govFee = 22.66;
+    const totalAmount = ((govFee + pricing.price) * travelerCount).toFixed(2);
+    protectionRefund.textContent = `$${totalAmount}`;
+  }
+  
+  // Update nationality flag (default to US for now)
+  const nationalityFlag = document.getElementById('review-nationality-flag');
+  if (nationalityFlag) {
+    // You can update this based on the selected nationality from step 1
+    // Using emoji flag as placeholder - can be replaced with actual flag image
+    nationalityFlag.textContent = '🇺🇸';
+    nationalityFlag.title = 'US Flag';
+  }
+  
+  // Set up protection plan checkbox handler
+  const protectionCheckbox = document.getElementById('protection-plan-checkbox');
+  if (protectionCheckbox) {
+    // Reset checkbox to unchecked state
+    protectionCheckbox.checked = false;
+    
+    // Remove existing listeners by cloning and replacing
+    const newCheckbox = protectionCheckbox.cloneNode(true);
+    protectionCheckbox.parentNode.replaceChild(newCheckbox, protectionCheckbox);
+    newCheckbox.addEventListener('change', () => {
+      updateReviewTotal();
+    });
+  }
+}
+
+// Function to update sidebar for review step
+function updateSidebarReview(formData) {
+  initializeReviewOrder(formData);
+}
+
+// Function to update review total when protection plan is selected
+function updateReviewTotal() {
+  const protectionCheckbox = document.getElementById('protection-plan-checkbox');
+  const total = document.getElementById('review-total');
+  const protectionPrice = 17.99;
+  
+  if (!total || !protectionCheckbox) return;
+  
+  // Get base total from form data (stored when step is initialized)
+  const travelerCount = travelerData.count || 1;
+  const processingType = travelerData.processingType || 'rush';
+  const pricing = processingPricing[processingType] || processingPricing.rush;
+  const govFee = 22.66;
+  const baseTotal = (govFee + pricing.price) * travelerCount;
+  
+  if (protectionCheckbox.checked) {
+    const newTotal = (baseTotal + protectionPrice).toFixed(2);
+    total.textContent = `USD $${newTotal}`;
+  } else {
+    const newTotal = baseTotal.toFixed(2);
+    total.textContent = `USD $${newTotal}`;
+  }
 }
 

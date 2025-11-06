@@ -2504,6 +2504,7 @@ code {
 
 /* Form Card */
 .app-form-card {
+  position: relative;
   border: 2px solid #f0f3f7;
   border-radius: 16px;
   padding: 40px;
@@ -3370,6 +3371,246 @@ code {
 
   .app-processing-option-label {
     font-size: 14px;
+  }
+}
+
+/* ============================================
+   STEP 4: REVIEW ORDER
+   ============================================ */
+
+/* Delivery Information */
+.app-delivery-info {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  transform: translateY(-50%);
+}
+
+.app-delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.app-delivery-badge-dark {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+.app-delivery-badge-light {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.app-delivery-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Review Card */
+.app-review-card {
+  background-color: #ffffff;
+  border: 2px solid #f0f3f7;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.app-review-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.app-review-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.app-review-flag {
+  width: 40px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.app-review-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+}
+
+.app-review-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-review-feature-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.app-review-feature-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.app-review-feature-value {
+  font-size: 16px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Protection Plan Card */
+.app-protection-card {
+  background-color: #f0f9ff;
+  border: 2px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.app-protection-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+}
+
+.app-protection-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.app-protection-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.app-protection-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.app-protection-description {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.app-protection-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.app-protection-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.app-protection-checkbox-custom {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.app-protection-checkbox:checked + .app-protection-checkbox-custom {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+}
+
+.app-protection-checkbox:checked + .app-protection-checkbox-custom::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.app-protection-checkbox-wrapper:hover .app-protection-checkbox-custom {
+  border-color: #3b82f6;
+}
+
+/* Responsive Styles for Step 4 */
+@media (max-width: 768px) {
+  .app-review-card {
+    padding: 20px;
+  }
+
+  .app-review-card-header {
+    margin-bottom: 20px;
+  }
+
+  .app-review-features {
+    grid-template-columns: 1fr;
+  }
+
+  .app-review-feature {
+    padding: 16px;
+  }
+
+  .app-protection-card {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .app-protection-checkbox-wrapper {
+    align-self: flex-end;
+  }
+
+  .app-delivery-info {
+    flex-direction: column;
   }
 }
 

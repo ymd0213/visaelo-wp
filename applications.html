@@ -506,11 +506,136 @@
                                 <div class="app-sidebar-actions">
                                     <button class="app-continue-btn" id="checkout-continue-btn">
                                         <img src="images/icons/icon_turn_right.png" alt="Continue" class="app-continue-btn-icon">
-                                        <span>Save and continue</span>
+                                        <span>Continue</span>
                                     </button>
                                     <button class="app-previous-btn" id="checkout-previous-btn">
                                         <img src="images/icons/icon_turn_left.png" alt="Previous" class="app-previous-btn-icon">
                                         <span>← Previous</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="app-security-message">
+                                    <img src="images/icons/icon_shield.png" alt="Security" class="app-security-icon">
+                                    <p class="app-security-text">
+                                        We take strong measures to protect your information. For more details see 
+                                        <a href="#" class="app-link">how we keep your data safe</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Review Order -->
+                    <div class="app-step app-step-4" id="step-4" style="display: none;">
+                        <div class="app-main">
+                            <div class="app-form-card">
+                                <!-- Delivery Information -->
+                                <div class="app-delivery-info">
+                                    <div class="app-delivery-badge app-delivery-badge-dark">
+                                        <img src="images/icons/icon_calendar.png" alt="Calendar" class="app-delivery-icon">
+                                        <span id="review-expected-date">Expected by: Today by 7:26 PM</span>
+                                    </div>
+                                    <div class="app-delivery-badge app-delivery-badge-light">
+                                        <img src="images/icons/icon_star.png" alt="Ultra Rush" class="app-delivery-icon">
+                                        <span id="review-delivery-type">Ultra Rush delivery</span>
+                                    </div>
+                                </div>
+
+                                <!-- ETA Details Card -->
+                                <div class="app-review-card">
+                                    <div class="app-review-card-header">
+                                        <h3 class="app-review-card-title">United Kingdom ETA</h3>
+                                    </div>
+                                    <div class="app-review-features">
+                                        <div class="app-review-feature">
+                                            <div class="app-feature-icon brand-icon">
+                                                <img src="images/icons/icon_calendar.png" alt="Calendar">
+                                            </div>
+                                            <div class="app-review-feature-content">
+                                                <span class="app-review-feature-label">Valid for</span>
+                                                <span class="app-review-feature-value">2 years after issued</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-review-feature">
+                                            <div class="app-feature-icon brand-icon">
+                                                <img src="images/icons/icon_calendar_day.png" alt="Calendar day">
+                                            </div>
+                                            <div class="app-review-feature-content">
+                                                <span class="app-review-feature-label">Max stay</span>
+                                                <span class="app-review-feature-value">186 days per entry</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-review-feature">
+                                            <div class="app-feature-icon brand-icon">
+                                                <img src="images/icons/icon_location.png" alt="Location">
+                                            </div>
+                                            <div class="app-review-feature-content">
+                                                <span class="app-review-feature-label">Valid for</span>
+                                                <span class="app-review-feature-value" id="review-entry-type">Multiple entry</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-review-feature">
+                                            <div class="app-feature-icon brand-icon">
+                                                <img src="images/icons/icon_group.png" alt="People">
+                                            </div>
+                                            <div class="app-review-feature-content">
+                                                <span class="app-review-feature-label">Travelers</span>
+                                                <span class="app-review-feature-value" id="review-travelers-names">Matthew, Elijah</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Protection Plan Card -->
+                                <div class="app-protection-card">
+                                    <div class="app-protection-card-header">
+                                        <img src="images/icons/icon_protect.png" alt="Protect" class="app-protection-icon">
+                                        <div class="app-protection-content">
+                                            <h3 class="app-protection-title">Protect Your Application - Just $17.99</h3>
+                                            <p class="app-protection-description">Get a 100% refund (<span id="review-protection-refund">$202.65</span>) if your application is rejected by the government for any reason.</p>
+                                        </div>
+                                    </div>
+                                    <label class="app-protection-checkbox-wrapper">
+                                        <input type="checkbox" id="protection-plan-checkbox" class="app-protection-checkbox">
+                                        <span class="app-protection-checkbox-custom"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Sidebar Step 4 -->
+                        <div class="app-sidebar">
+                            <div class="app-sidebar-card">
+                                <div class="app-summary">
+                                    <div class="app-summary-item">
+                                        <span class="app-summary-label" id="review-summary-eta">United Kingdom ETA</span>
+                                        <span class="app-summary-value" id="review-summary-travelers">1 Traveler</span>
+                                    </div>
+                                    <div class="app-summary-item">
+                                        <span class="app-summary-label">Government fees</span>
+                                        <span class="app-summary-value" id="review-summary-fees">$22.66</span>
+                                    </div>
+                                    <div class="app-summary-item" id="review-processing-item">
+                                        <span class="app-summary-label" id="review-processing-label">Super Rush, 1 hour</span>
+                                        <span class="app-summary-value" id="review-processing-price">$179.99</span>
+                                    </div>
+                                    <div class="app-summary-item app-summary-total">
+                                        <span class="app-summary-label">Total</span>
+                                        <div class="app-summary-total-value-wrapper">
+                                            <span class="app-summary-value" id="review-total">USD $202.65</span>
+                                            <span class="app-summary-subtitle">(Includes taxes and fees)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-sidebar-actions">
+                                    <button class="app-continue-btn" id="review-continue-btn">
+                                        <img src="images/icons/icon_turn_right.png" alt="Continue" class="app-continue-btn-icon">
+                                        <span>Continue to payment</span>
+                                    </button>
+                                    <button class="app-previous-btn" id="review-previous-btn">
+                                        <img src="images/icons/icon_turn_left.png" alt="Previous" class="app-previous-btn-icon">
+                                        <span>Previous</span>
                                     </button>
                                 </div>
                                 
