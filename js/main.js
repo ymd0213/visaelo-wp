@@ -47,13 +47,20 @@ class CustomSelect {
   renderButton() {
     const buttonContent = this.button.querySelector('.select-button-content');
     if (this.selectedOption) {
-      buttonContent.innerHTML = `
-        <img src="${this.selectedOption.flag}" alt="" class="select-flag">
-        <span>${this.selectedOption.label}</span>
-      `;
+      if (this.selectedOption.flag) {
+        buttonContent.innerHTML = `
+          <img src="${this.selectedOption.flag}" alt="" class="select-flag">
+          <span>${this.selectedOption.label}</span>
+        `;
+      } else {
+        buttonContent.innerHTML = `
+          <span>${this.selectedOption.label}</span>
+        `;
+      }
     } else {
+      const defaultText = this.button.dataset.placeholder || 'Select';
       buttonContent.innerHTML = `
-        <span>Select country</span>
+        <span>${defaultText}</span>
       `;
     }
   }
@@ -66,10 +73,16 @@ class CustomSelect {
       if (this.selectedOption && option.value === this.selectedOption.value) {
         optionElement.classList.add('selected');
       }
-      optionElement.innerHTML = `
-        <img src="${option.flag}" alt="" class="select-flag">
-        <span>${option.label}</span>
-      `;
+      if (option.flag) {
+        optionElement.innerHTML = `
+          <img src="${option.flag}" alt="" class="select-flag">
+          <span>${option.label}</span>
+        `;
+      } else {
+        optionElement.innerHTML = `
+          <span>${option.label}</span>
+        `;
+      }
       optionElement.addEventListener('click', () => this.selectOption(option));
       this.dropdown.appendChild(optionElement);
     });

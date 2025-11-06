@@ -53,102 +53,323 @@
             <!-- Main Content -->
             <div class="app-content-container">
                 <div class="app-content">
-                    <div class="app-main">
-                        <!-- Application Form -->
-                        <div class="app-form-card">
-                            <div class="app-form">
-                                <!-- Nationality Field -->
-                                <div class="app-form-field">
-                                    <label class="app-form-label">What's your nationality?</label>
-                                    <div class="custom-select-wrapper">
-                                        <button class="custom-select-button" id="nationality-select">
-                                            <span class="select-button-content">
-                                                <span>Select country</span>
-                                            </span>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                        <div class="custom-select-dropdown" id="nationality-dropdown" style="display: none;"></div>
+                    <!-- Step 1: Trip Details -->
+                    <div class="app-step app-step-1" id="step-1">
+                        <div class="app-main">
+                            <!-- Application Form -->
+                            <div class="app-form-card">
+                                <div class="app-form">
+                                    <!-- Nationality Field -->
+                                    <div class="app-form-field">
+                                        <label class="app-form-label">What's your nationality?</label>
+                                        <div class="custom-select-wrapper">
+                                            <button class="custom-select-button" id="nationality-select">
+                                                <span class="select-button-content">
+                                                    <span>Select country</span>
+                                                </span>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="custom-select-dropdown" id="nationality-dropdown" style="display: none;"></div>
+                                        </div>
+                                        <p class="app-form-hint">Ensure you select the nationality of the passport you'll be traveling with.</p>
                                     </div>
-                                    <p class="app-form-hint">Ensure you select the nationality of the passport you'll be traveling with.</p>
-                                </div>
-    
-                                <!-- Applying For Field -->
-                                <div class="app-form-field">
-                                    <label class="app-form-label">Applying for</label>
-                                    <div class="custom-select-wrapper">
-                                        <button class="custom-select-button" id="applying-for-select">
-                                            <span class="select-button-content">
-                                                <span>Select country</span>
-                                            </span>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                        <div class="custom-select-dropdown" id="applying-for-dropdown" style="display: none;"></div>
+        
+                                    <!-- Applying For Field -->
+                                    <div class="app-form-field">
+                                        <label class="app-form-label">Applying for</label>
+                                        <div class="custom-select-wrapper">
+                                            <button class="custom-select-button" id="applying-for-select">
+                                                <span class="select-button-content">
+                                                    <span>Select country</span>
+                                                </span>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            <div class="custom-select-dropdown" id="applying-for-dropdown" style="display: none;"></div>
+                                        </div>
                                     </div>
-                                </div>
-    
-                                <!-- Number of Applicants Field -->
-                                <div class="app-form-field">
-                                    <label class="app-form-label">Number of applicants</label>
-                                    <div class="app-number-input">
-                                        <button class="app-number-btn app-number-btn-minus" id="number-decrease">
-                                            <span>-</span>
-                                        </button>
-                                        <input type="text" class="app-number-display" id="number-display" value="01" readonly>
-                                        <button class="app-number-btn app-number-btn-plus" id="number-increase">
-                                            <span>+</span>
-                                        </button>
+        
+                                    <!-- Number of Applicants Field -->
+                                    <div class="app-form-field">
+                                        <label class="app-form-label">Number of applicants</label>
+                                        <div class="app-number-input">
+                                            <button class="app-number-btn app-number-btn-minus" id="number-decrease">
+                                                <span>-</span>
+                                            </button>
+                                            <input type="text" class="app-number-display" id="number-display" value="01" readonly>
+                                            <button class="app-number-btn app-number-btn-plus" id="number-increase">
+                                                <span>+</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
     
-                    <!-- Sidebar -->
-                    <div class="app-sidebar">
-                        <div class="app-sidebar-card">
-                            <div class="app-badge">+ Most popular</div>
-                            <h2 class="app-sidebar-title">United Kingdom ETA</h2>
-                            
-                            <div class="app-features">
-                                <div class="app-feature">
-                                    <div class="app-feature-icon brand-icon">
-                                        <img src="images/icons/icon_calendar.png" alt="Calendar">
+                        <!-- Sidebar Step 1 -->
+                        <div class="app-sidebar">
+                            <div class="app-sidebar-card">
+                                <div class="app-badge">+ Most popular</div>
+                                <h2 class="app-sidebar-title">United Kingdom ETA</h2>
+                                
+                                <div class="app-features">
+                                    <div class="app-feature">
+                                        <div class="app-feature-icon brand-icon">
+                                            <img src="images/icons/icon_calendar.png" alt="Calendar">
+                                        </div>
+                                        <div class="app-feature-content">
+                                            <span class="app-feature-label">Valid for</span>
+                                            <span class="app-feature-value">2 years after issued</span>
+                                        </div>
                                     </div>
-                                    <div class="app-feature-content">
-                                        <span class="app-feature-label">Valid for</span>
-                                        <span class="app-feature-value">2 years after issued</span>
+                                    
+                                    <div class="app-feature">
+                                        <div class="app-feature-icon brand-icon">
+                                            <img src="images/icons/icon_location.png" alt="Location">
+                                        </div>
+                                        <div class="app-feature-content">
+                                            <span class="app-feature-label">Valid for</span>
+                                            <span class="app-feature-value">Multiple entry</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="app-feature">
+                                        <div class="app-feature-icon brand-icon">
+                                            <img src="images/icons/icon_calendar_day.png" alt="Calendar day">
+                                        </div>
+                                        <div class="app-feature-content">
+                                            <span class="app-feature-label">Max stay</span>
+                                            <span class="app-feature-value">186 days per entry</span>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <button class="app-start-btn" id="start-application-btn">
+                                    <img src="images/icons/icon_turn_right.png" alt="Arrow right" class="app-start-btn-icon">
+                                    <span>Start your application</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Your Details -->
+                    <div class="app-step app-step-2" id="step-2" style="display: none;">
+                        <div class="app-main">
+                            <div class="app-form-card">
+                                <h2 class="app-section-title">Your personal details</h2>
+                                <p class="app-section-subtitle">Enter the details exactly as they appear on your passport.</p>
+                                
+                                <div class="app-travelers-list" id="travelers-list">
+                                    <!-- Traveler #1 -->
+                                    <div class="app-traveler-card" data-traveler="1">
+                                        <div class="app-traveler-header" data-traveler-toggle="1">
+                                            <h3 class="app-traveler-title">Traveler #1</h3>
+                                            <svg class="app-traveler-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="app-traveler-content" data-traveler-content="1">
+                                            <div class="app-form">
+                                                <!-- First & Middle Name -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">First & middle name</label>
+                                                    <input type="text" class="app-form-input" id="traveler-1-firstname" placeholder="John William" value="John William">
+                                                </div>
+                                                
+                                                <!-- Last Name -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">Last name</label>
+                                                    <input type="text" class="app-form-input" id="traveler-1-lastname" placeholder="Smith" value="Smith">
+                                                </div>
+                                                
+                                                <!-- Date of Birth -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">Date of birth</label>
+                                                    <div class="app-date-input">
+                                                        <div class="custom-select-wrapper">
+                                                            <button class="custom-select-button app-date-select" id="traveler-1-day" data-placeholder="Day">
+                                                                <span class="select-button-content">
+                                                                    <span>Day</span>
+                                                                </span>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </button>
+                                                            <div class="custom-select-dropdown" id="traveler-1-day-dropdown" style="display: none;"></div>
+                                                        </div>
+                                                        <div class="custom-select-wrapper">
+                                                            <button class="custom-select-button app-date-select" id="traveler-1-month" data-placeholder="Month">
+                                                                <span class="select-button-content">
+                                                                    <span>Month</span>
+                                                                </span>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </button>
+                                                            <div class="custom-select-dropdown" id="traveler-1-month-dropdown" style="display: none;"></div>
+                                                        </div>
+                                                        <div class="custom-select-wrapper">
+                                                            <button class="custom-select-button app-date-select" id="traveler-1-year" data-placeholder="Years">
+                                                                <span class="select-button-content">
+                                                                    <span>Years</span>
+                                                                </span>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </button>
+                                                            <div class="custom-select-dropdown" id="traveler-1-year-dropdown" style="display: none;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Email Address -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">Email address</label>
+                                                    <input type="email" class="app-form-input" id="traveler-1-email" placeholder="johnsmith@gmail.com" value="johnsmith@gmail.com">
+                                                    <p class="app-form-hint">Your approved United Kingdom ETA will be sent to this email address.</p>
+                                                </div>
+                                                
+                                                <!-- Marketing Opt-in -->
+                                                <div class="app-form-checkbox">
+                                                    <input type="checkbox" id="traveler-1-marketing" class="app-checkbox-input">
+                                                    <label for="traveler-1-marketing" class="app-checkbox-label">
+                                                        I want to receive visaelo updates, product & personalized offers. I can opt out anytime. 
+                                                        <a href="#" class="app-link">Terms and Privacy Policy apply</a>.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Traveler #2 (Initially collapsed) -->
+                                    <div class="app-traveler-card app-traveler-collapsed" data-traveler="2">
+                                        <div class="app-traveler-header" data-traveler-toggle="2">
+                                            <h3 class="app-traveler-title">Traveler #2</h3>
+                                            <svg class="app-traveler-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="app-traveler-content" data-traveler-content="2" style="display: none;">
+                                            <div class="app-form">
+                                                <!-- First & Middle Name -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">First & middle name</label>
+                                                    <input type="text" class="app-form-input" id="traveler-2-firstname" placeholder="First & middle name">
+                                                </div>
+                                                
+                                                <!-- Last Name -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">Last name</label>
+                                                    <input type="text" class="app-form-input" id="traveler-2-lastname" placeholder="Last name">
+                                                </div>
+                                                
+                                                <!-- Date of Birth -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">Date of birth</label>
+                                                    <div class="app-date-input">
+                                                        <div class="custom-select-wrapper">
+                                                            <button class="custom-select-button app-date-select" id="traveler-2-day" data-placeholder="Day">
+                                                                <span class="select-button-content">
+                                                                    <span>Day</span>
+                                                                </span>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </button>
+                                                            <div class="custom-select-dropdown" id="traveler-2-day-dropdown" style="display: none;"></div>
+                                                        </div>
+                                                        <div class="custom-select-wrapper">
+                                                            <button class="custom-select-button app-date-select" id="traveler-2-month" data-placeholder="Month">
+                                                                <span class="select-button-content">
+                                                                    <span>Month</span>
+                                                                </span>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </button>
+                                                            <div class="custom-select-dropdown" id="traveler-2-month-dropdown" style="display: none;"></div>
+                                                        </div>
+                                                        <div class="custom-select-wrapper">
+                                                            <button class="custom-select-button app-date-select" id="traveler-2-year" data-placeholder="Years">
+                                                                <span class="select-button-content">
+                                                                    <span>Years</span>
+                                                                </span>
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </button>
+                                                            <div class="custom-select-dropdown" id="traveler-2-year-dropdown" style="display: none;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Email Address -->
+                                                <div class="app-form-field">
+                                                    <label class="app-form-label">Email address</label>
+                                                    <input type="email" class="app-form-input" id="traveler-2-email" placeholder="Email address">
+                                                    <p class="app-form-hint">Your approved United Kingdom ETA will be sent to this email address.</p>
+                                                </div>
+                                                
+                                                <!-- Marketing Opt-in -->
+                                                <div class="app-form-checkbox">
+                                                    <input type="checkbox" id="traveler-2-marketing" class="app-checkbox-input">
+                                                    <label for="traveler-2-marketing" class="app-checkbox-label">
+                                                        I want to receive visaelo updates, product & personalized offers. I can opt out anytime. 
+                                                        <a href="#" class="app-link">Terms and Privacy Policy apply</a>.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
-                                <div class="app-feature">
-                                    <div class="app-feature-icon brand-icon">
-                                        <img src="images/icons/icon_location.png" alt="Location">
+                                <button class="app-add-traveler-btn" id="add-traveler-btn">
+                                    <img src="images/icons/icon_turn_right.png" alt="Add" class="app-add-traveler-icon">
+                                    <span>Add another traveler</span>
+                                </button>
+                            </div>
+                        </div>
+    
+                        <!-- Sidebar Step 2 -->
+                        <div class="app-sidebar">
+                            <div class="app-sidebar-card">
+                                <div class="app-summary">
+                                    <div class="app-summary-item">
+                                        <span class="app-summary-label">United Kingdom ETA</span>
+                                        <span class="app-summary-value" id="summary-travelers">1 Traveler</span>
                                     </div>
-                                    <div class="app-feature-content">
-                                        <span class="app-feature-label">Valid for</span>
-                                        <span class="app-feature-value">Multiple entry</span>
+                                    <div class="app-summary-item">
+                                        <span class="app-summary-label">Government fees</span>
+                                        <span class="app-summary-value" id="summary-fees">1 Traveler</span>
+                                    </div>
+                                    <div class="app-summary-item app-summary-total">
+                                        <span class="app-summary-label">Total</span>
+                                        <span class="app-summary-value">Calculated at checkout</span>
                                     </div>
                                 </div>
                                 
-                                <div class="app-feature">
-                                    <div class="app-feature-icon brand-icon">
-                                        <img src="images/icons/icon_calendar_day.png" alt="Calendar day">
-                                    </div>
-                                    <div class="app-feature-content">
-                                        <span class="app-feature-label">Max stay</span>
-                                        <span class="app-feature-value">186 days per entry</span>
-                                    </div>
+                                <div class="app-sidebar-actions">
+                                    <button class="app-continue-btn" id="save-continue-btn">
+                                        <img src="images/icons/icon_turn_right.png" alt="Continue" class="app-continue-btn-icon">
+                                        <span>Save and continue</span>
+                                    </button>
+                                    <button class="app-previous-btn" id="previous-btn">
+                                        <img src="images/icons/icon_turn_left.png" alt="Previous" class="app-previous-btn-icon">
+                                        <span>Previous</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="app-security-message">
+                                    <img src="images/icons/icon_shield.png" alt="Security" class="app-security-icon">
+                                    <p class="app-security-text">
+                                        We take strong measures to protect your information. For more details see 
+                                        <a href="#" class="app-link">how we keep your data safe</a>.
+                                    </p>
                                 </div>
                             </div>
-    
-                            <button class="app-start-btn" id="start-application-btn">
-                                <img src="images/icons/icon_turn_right.png" alt="Arrow right" class="app-start-btn-icon">
-                                <span>Start your application</span>
-                            </button>
                         </div>
                     </div>
                 </div>

@@ -2492,9 +2492,6 @@ code {
 .app-content {
   max-width: 1400px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 48px;
   position: relative;
   z-index: 1;
 }
@@ -2834,6 +2831,360 @@ code {
 
   .app-sidebar-card {
     padding: 20px;
+  }
+}
+
+/* ============================================
+   APPLICATION STEPS
+   ============================================ */
+.app-step {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 48px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .app-step {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ============================================
+   STEP 2: YOUR DETAILS
+   ============================================ */
+.app-section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.app-section-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 32px 0;
+}
+
+.app-travelers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.app-traveler-card {
+  border: 2px solid #f0f3f7;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.app-traveler-card:hover {
+  border-color: #e5e7eb;
+}
+
+.app-traveler-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background-color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.app-traveler-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.app-traveler-chevron {
+  color: #6b7280;
+  transition: transform 0.3s;
+  transform: rotate(180deg);
+}
+
+.app-traveler-collapsed .app-traveler-chevron {
+  transform: rotate(0deg);
+}
+
+.app-traveler-content {
+  padding: 0 24px 24px 24px;
+  background-color: #ffffff;
+}
+
+.app-form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.app-form-input:focus {
+  border-color: #3b82f6;
+}
+
+.app-form-input::placeholder {
+  color: #9ca3af;
+}
+
+.app-date-input {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.app-date-select {
+  width: 100%;
+}
+
+.app-form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.app-checkbox-input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.app-checkbox-label {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  cursor: pointer;
+  flex: 1;
+}
+
+.app-link {
+  color: #3b82f6;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.app-link:hover {
+  color: #2563eb;
+}
+
+.app-add-traveler-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.app-add-traveler-btn:hover {
+  background-color: #2563eb;
+}
+
+.app-add-traveler-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Step 2 Sidebar */
+.app-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-summary-total {
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 8px;
+}
+
+.app-summary-label {
+  font-size: 16px;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.app-summary-total .app-summary-label {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.app-summary-value {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.app-summary-total .app-summary-value {
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 18px;
+}
+
+.app-sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-continue-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.app-continue-btn:hover {
+  background-color: #2563eb;
+}
+
+.app-continue-btn-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.app-previous-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #f3f4f6;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.app-previous-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.app-previous-btn-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.app-security-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.app-security-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.app-security-text {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Progress Indicator States */
+.app-progress-step-active .app-progress-step-circle {
+  border-color: #3b82f6;
+}
+
+.app-progress-step-active .app-progress-step-label {
+  color: #1a1a1a;
+}
+
+/* Responsive Styles for Step 2 */
+@media (max-width: 768px) {
+  .app-section-title {
+    font-size: 24px;
+  }
+
+  .app-traveler-header {
+    padding: 16px 20px;
+  }
+
+  .app-traveler-content {
+    padding: 0 20px 20px 20px;
+  }
+
+  .app-date-input {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .app-summary {
+    padding-bottom: 20px;
+  }
+
+  .app-security-message {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-section-title {
+    font-size: 20px;
+  }
+
+  .app-traveler-header {
+    padding: 12px 16px;
+  }
+
+  .app-traveler-content {
+    padding: 0 16px 16px 16px;
   }
 }
 
