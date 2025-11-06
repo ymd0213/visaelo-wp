@@ -1,4 +1,4 @@
-// Country options data
+// Country options data (extended list)
 const countryOptions = [
   { value: 'us', label: 'United States', flag: 'https://flagcdn.com/w20/us.png' },
   { value: 'uk', label: 'United Kingdom', flag: 'https://flagcdn.com/w20/gb.png' },
@@ -10,6 +10,11 @@ const countryOptions = [
   { value: 'es', label: 'Spain', flag: 'https://flagcdn.com/w20/es.png' },
   { value: 'jp', label: 'Japan', flag: 'https://flagcdn.com/w20/jp.png' },
   { value: 'cn', label: 'China', flag: 'https://flagcdn.com/w20/cn.png' },
+  { value: 'in', label: 'India', flag: 'https://flagcdn.com/w20/in.png' },
+  { value: 'br', label: 'Brazil', flag: 'https://flagcdn.com/w20/br.png' },
+  { value: 'mx', label: 'Mexico', flag: 'https://flagcdn.com/w20/mx.png' },
+  { value: 'nl', label: 'Netherlands', flag: 'https://flagcdn.com/w20/nl.png' },
+  { value: 'se', label: 'Sweden', flag: 'https://flagcdn.com/w20/se.png' },
 ];
 
 // Custom Select Component
@@ -18,23 +23,37 @@ class CustomSelect {
     this.button = document.getElementById(buttonId);
     this.dropdown = document.getElementById(dropdownId);
     this.options = options;
-    this.selectedOption = defaultOption || options[0];
+    this.selectedOption = defaultOption !== null ? defaultOption : null;
+    
+    // Check if elements exist
+    if (!this.button || !this.dropdown) {
+      console.error(`CustomSelect: Elements not found. Button: ${buttonId}, Dropdown: ${dropdownId}`);
+      return;
+    }
     
     this.init();
   }
 
   init() {
+    // Ensure dropdown is closed initially
+    if (this.dropdown) {
+      this.dropdown.style.display = 'none';
+    }
     this.renderButton();
     this.renderDropdown();
     this.attachEventListeners();
   }
 
   renderButton() {
+    const buttonContent = this.button.querySelector('.select-button-content');
     if (this.selectedOption) {
-      const buttonContent = this.button.querySelector('.select-button-content');
       buttonContent.innerHTML = `
         <img src="${this.selectedOption.flag}" alt="" class="select-flag">
         <span>${this.selectedOption.label}</span>
+      `;
+    } else {
+      buttonContent.innerHTML = `
+        <span>Select country</span>
       `;
     }
   }
@@ -64,35 +83,55 @@ class CustomSelect {
   }
 
   openDropdown() {
+    if (!this.dropdown) return;
     this.dropdown.style.display = 'block';
+    this.button.setAttribute('aria-expanded', 'true');
     // Close other dropdowns
     document.querySelectorAll('.custom-select-dropdown').forEach(dropdown => {
       if (dropdown !== this.dropdown) {
         dropdown.style.display = 'none';
+        const otherButton = dropdown.closest('.custom-select-wrapper')?.querySelector('.custom-select-button');
+        if (otherButton) {
+          otherButton.setAttribute('aria-expanded', 'false');
+        }
       }
     });
   }
 
   closeDropdown() {
+    if (!this.dropdown) return;
     this.dropdown.style.display = 'none';
+    if (this.button) {
+      this.button.setAttribute('aria-expanded', 'false');
+    }
   }
 
   attachEventListeners() {
+    // Toggle dropdown on button click
     this.button.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (this.dropdown.style.display === 'none' || !this.dropdown.style.display) {
-        this.openDropdown();
-      } else {
+      
+      // Simple toggle - check current state
+      const isOpen = this.dropdown.style.display === 'block';
+      
+      if (isOpen) {
         this.closeDropdown();
+      } else {
+        this.openDropdown();
       }
     });
 
     // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
+    const handleOutsideClick = (e) => {
       if (!this.button.contains(e.target) && !this.dropdown.contains(e.target)) {
         this.closeDropdown();
       }
-    });
+    };
+    
+    document.addEventListener('click', handleOutsideClick);
+    
+    // Store handler for potential cleanup
+    this._outsideClickHandler = handleOutsideClick;
   }
 
   getValue() {
@@ -203,31 +242,41 @@ class TestimonialsCarousel {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize custom selects
-  const passportSelect = new CustomSelect(
-    'passport-select',
-    'passport-dropdown',
-    countryOptions,
-    countryOptions[0] // Default to United States
-  );
+  // Initialize custom selects (only if elements exist)
+  const passportButton = document.getElementById('passport-select');
+  const destinationButton = document.getElementById('destination-select');
+  
+  if (passportButton) {
+    const passportSelect = new CustomSelect(
+      'passport-select',
+      'passport-dropdown',
+      countryOptions,
+      countryOptions[0] // Default to United States
+    );
+  }
 
-  const destinationSelect = new CustomSelect(
-    'destination-select',
-    'destination-dropdown',
-    countryOptions,
-    null // No default selection
-  );
+  if (destinationButton) {
+    const destinationSelect = new CustomSelect(
+      'destination-select',
+      'destination-dropdown',
+      countryOptions,
+      null // No default selection
+    );
+  }
 
-  // Initialize testimonials carousel
-  const carousel = new TestimonialsCarousel();
+  // Initialize testimonials carousel (only if element exists)
+  const testimonialsTrack = document.getElementById('testimonials-track');
+  if (testimonialsTrack) {
+    const carousel = new TestimonialsCarousel();
 
-  // Handle responsive updates
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      carousel.updateResponsiveCardsPerView();
-    }, 250);
-  });
+    // Handle responsive updates
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        carousel.updateResponsiveCardsPerView();
+      }, 250);
+    });
+  }
 });
 

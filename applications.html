@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Apply for United Kingdom ETA - Visaelo">
+    <title>Apply for United Kingdom ETA - Visaelo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="main-layout">
+    <main class="layout-main">
+        <div class="app-page">
+            <!-- Header -->
+            <div class="app-header">
+                <div class="app-header-container">
+                    <div class="app-logo">
+                        <img src="images/icons/logo.png" alt="visaelo" class="app-logo-img">
+                    </div>
+                    <button class="app-help-btn">
+                        <img src="images/icons/icon_turn_right.png" alt="Help" class="app-help-btn-icon">
+                        <span>Help</span>
+                    </button>
+                </div>
+
+                <!-- Page Intro -->
+                <div class="app-intro">
+                    <h1 class="app-title">Apply now for United Kingdom ETA</h1>
+                    <p class="app-subtitle">The United Kingdom ETA is mandatory for Australia passport holders planning to enter United Kingdom</p>
+                </div>
+                                    
+                <!-- Progress Indicator -->
+                <div class="app-progress">
+                    <div class="app-progress-step">
+                        <div class="app-progress-step-circle">
+                            <div class="app-progress-step-dot"></div>
+                        </div>
+                        <span class="app-progress-step-label">Trip details</span>
+                    </div>
+                    <div class="app-progress-bar"></div>
+                    <div class="app-progress-step">
+                        <div class="app-progress-step-circle"></div>
+                        <span class="app-progress-step-label">Your details</span>
+                    </div>
+                    <div class="app-progress-bar"></div>
+                    <div class="app-progress-step">
+                        <div class="app-progress-step-circle"></div>
+                        <span class="app-progress-step-label">Checkout</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="app-content-container">
+                <div class="app-content">
+                    <div class="app-main">
+                        <!-- Application Form -->
+                        <div class="app-form-card">
+                            <div class="app-form">
+                                <!-- Nationality Field -->
+                                <div class="app-form-field">
+                                    <label class="app-form-label">What's your nationality?</label>
+                                    <div class="custom-select-wrapper">
+                                        <button class="custom-select-button" id="nationality-select">
+                                            <span class="select-button-content">
+                                                <span>Select country</span>
+                                            </span>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="custom-select-dropdown" id="nationality-dropdown" style="display: none;"></div>
+                                    </div>
+                                    <p class="app-form-hint">Ensure you select the nationality of the passport you'll be traveling with.</p>
+                                </div>
+    
+                                <!-- Applying For Field -->
+                                <div class="app-form-field">
+                                    <label class="app-form-label">Applying for</label>
+                                    <div class="custom-select-wrapper">
+                                        <button class="custom-select-button" id="applying-for-select">
+                                            <span class="select-button-content">
+                                                <span>Select country</span>
+                                            </span>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="custom-select-dropdown" id="applying-for-dropdown" style="display: none;"></div>
+                                    </div>
+                                </div>
+    
+                                <!-- Number of Applicants Field -->
+                                <div class="app-form-field">
+                                    <label class="app-form-label">Number of applicants</label>
+                                    <div class="app-number-input">
+                                        <button class="app-number-btn app-number-btn-minus" id="number-decrease">
+                                            <span>-</span>
+                                        </button>
+                                        <input type="text" class="app-number-display" id="number-display" value="01" readonly>
+                                        <button class="app-number-btn app-number-btn-plus" id="number-increase">
+                                            <span>+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Sidebar -->
+                    <div class="app-sidebar">
+                        <div class="app-sidebar-card">
+                            <div class="app-badge">+ Most popular</div>
+                            <h2 class="app-sidebar-title">United Kingdom ETA</h2>
+                            
+                            <div class="app-features">
+                                <div class="app-feature">
+                                    <div class="app-feature-icon brand-icon">
+                                        <img src="images/icons/icon_calendar.png" alt="Calendar">
+                                    </div>
+                                    <div class="app-feature-content">
+                                        <span class="app-feature-label">Valid for</span>
+                                        <span class="app-feature-value">2 years after issued</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-feature">
+                                    <div class="app-feature-icon brand-icon">
+                                        <img src="images/icons/icon_location.png" alt="Location">
+                                    </div>
+                                    <div class="app-feature-content">
+                                        <span class="app-feature-label">Valid for</span>
+                                        <span class="app-feature-value">Multiple entry</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-feature">
+                                    <div class="app-feature-icon brand-icon">
+                                        <img src="images/icons/icon_calendar_day.png" alt="Calendar day">
+                                    </div>
+                                    <div class="app-feature-content">
+                                        <span class="app-feature-label">Max stay</span>
+                                        <span class="app-feature-value">186 days per entry</span>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <button class="app-start-btn" id="start-application-btn">
+                                <img src="images/icons/icon_turn_right.png" alt="Arrow right" class="app-start-btn-icon">
+                                <span>Start your application</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/applications.js"></script>
+</body>
+</html>

@@ -2297,3 +2297,543 @@ code {
   }
 }
 
+/* ============================================
+   APPLICATIONS PAGE
+   ============================================ */
+.app-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: calc(100% - 32px);
+  min-height: calc(100vh - 32px);
+  position: relative;
+  overflow-x: hidden;
+  margin: 16px;
+  border-radius: 16px;
+}
+
+/* Header */
+.app-header {
+  width: 100%;
+  padding: 36px 48px 64px 48px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f0f3f7;
+  border-radius: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #8dbfff 0%, #ffffff 100%);
+  transform: translate(50%, -50%);
+  filter: blur(120px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.app-header-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+}
+
+.app-logo-img {
+  height: auto;
+  max-height: 40px;
+  width: auto;
+}
+
+.app-help-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.app-help-btn:hover {
+  background-color: #2d2d2d;
+}
+
+.app-help-btn-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* Page Intro */
+.app-intro {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.app-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.app-subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Progress Indicator */
+.app-progress {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 0;
+  max-width: 1400px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 2px solid #f0f3f7;
+  border-radius: 12px;
+  padding: 12px 24px;
+  transform: translate(-50%, 50%);
+}
+
+.app-progress-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.app-progress-bar {
+  flex: 1;
+  height: 4px;
+  background-color: #eff2f6;
+  align-self: center;
+  position: relative;
+  margin: 0 32px;
+  z-index: 0;
+  min-width: 40px;
+}
+
+.app-progress-bar-active {
+  background-color: #3b82f6;
+}
+
+.app-progress-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 8px solid #eff2f6;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.app-progress-step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #006fff;
+}
+
+.app-progress-step-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+  transition: color 0.3s;
+}
+
+.app-progress-step-active .app-progress-step-label {
+  color: #1a1a1a;
+}
+
+/* Main Content */
+.app-content-container {
+  flex: 1;
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 64px;
+}
+
+.app-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Form Card */
+.app-form-card {
+  border: 2px solid #f0f3f7;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.app-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.app-form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f0f3f7;
+  border-radius: 12px;
+  padding: 16px;
+  gap: 8px;
+}
+
+.app-form-label {
+  position: absolute;
+  top: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  padding: 0 8px;
+}
+
+.app-form-hint {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+  margin-top: 4px;
+}
+
+/* Number Input */
+.app-number-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.app-number-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: #f9fafb;
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.app-number-btn:hover:not(:disabled) {
+  background-color: #f3f4f6;
+}
+
+.app-number-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.app-number-btn-plus {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.app-number-btn-plus:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.app-number-display {
+  flex: 1;
+  width: 80px;
+  height: 48px;
+  border: none;
+  border-left: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  padding: 0;
+  outline: none;
+}
+
+/* Sidebar */
+.app-sidebar {
+  position: sticky;
+  top: 24px;
+  height: fit-content;
+}
+
+.app-sidebar-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 2px solid #f0f3f7;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app-badge {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #d1fae5;
+  color: #065f46;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 18px;
+  transform: translateY(-50%);
+  width: fit-content;
+}
+
+.app-sidebar-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.app-features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.app-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-feature:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.app-feature-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.app-feature-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.app-feature-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.app-feature-value {
+  font-size: 16px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.app-start-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.app-start-btn:hover {
+  background-color: #2563eb;
+}
+
+.app-start-btn svg {
+  transform: rotate(180deg);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .app-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .app-sidebar {
+    position: relative;
+    top: 0;
+  }
+
+  .app-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 20px 24px;
+  }
+
+  .app-intro {
+    padding: 24px 24px 0;
+  }
+
+  .app-content {
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .app-title {
+    font-size: 32px;
+  }
+
+  .app-subtitle {
+    font-size: 16px;
+  }
+
+  .app-progress {
+    padding: 16px;
+  }
+
+  .app-progress-bar {
+    top: -16px;
+    margin: 0 8px;
+  }
+
+  .app-progress-step-circle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .app-progress-step-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .app-progress-step-label {
+    font-size: 12px;
+  }
+
+  .app-form-card {
+    padding: 24px;
+  }
+
+  .app-form {
+    gap: 24px;
+  }
+
+  .app-sidebar-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 16px 20px;
+  }
+
+  .app-logo-img {
+    max-height: 36px;
+  }
+
+  .app-help-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .app-intro {
+    padding: 16px 16px 0;
+  }
+
+  .app-content {
+    padding: 16px;
+  }
+
+  .app-title {
+    font-size: 28px;
+  }
+
+  .app-progress {
+    padding: 12px;
+  }
+
+  .app-progress-bar {
+    top: -12px;
+    margin: 0 6px;
+  }
+
+  .app-form-card {
+    padding: 20px;
+  }
+
+  .app-sidebar-card {
+    padding: 20px;
+  }
+}
+
