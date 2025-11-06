@@ -677,7 +677,7 @@ code {
   border: 2px solid #f0f3f7;
   border-radius: 16px;
   background: #ffffff;
-  margin-top: -32px;
+  margin-top: -24px;
   overflow: hidden;
   box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.08);
 }
@@ -1060,14 +1060,14 @@ code {
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  border: 1px solid #E5E7EB;
-  background: #ffffff;
+  border: 1px solid #3b82f6;
+  background: #3b82f6;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  color: #212B36;
+  color: #ffffff;
   padding: 0;
   box-sizing: border-box;
 }
@@ -1084,8 +1084,8 @@ code {
 }
 
 .testimonials-nav-button:hover:not(:disabled) {
-  background: #F9FAFB;
-  border-color: #D1D5DB;
+  background: #2563eb;
+  border-color: #2563eb;
 }
 
 .testimonials-nav-button:disabled {
@@ -1362,6 +1362,46 @@ code {
   background: #ffffff;
   padding: 80px 0;
   border-radius: 16px;
+  border: 2px solid #e3e5eb;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decoration at bottom left - matching testimonials section style */
+.inc-5000-decorator {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  border: 2px solid #e3e5eb;
+  background: #f9fbfc;
+  z-index: 0;
+}
+
+.inc-5000-decorator::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  width: 200px;
+  height: 60px;
+  pointer-events: none;
+  border: 2px solid #e3e5eb;
+  background: transparent;
+}
+
+.inc-5000-decorator::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  width: 60px;
+  height: 200px;
+  pointer-events: none;
+  border: 2px solid #e3e5eb;
+  background: transparent;
 }
 
 .inc-5000-container {
@@ -1372,6 +1412,7 @@ code {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index: 1;
 }
 
 .inc-5000-content {
@@ -1881,6 +1922,11 @@ code {
     width: 100%;
     height: 300px;
     position: relative;
+    order: 2;
+  }
+
+  .easy-process-content {
+    order: 1;
   }
 
   .easy-process-image {
@@ -1934,26 +1980,72 @@ code {
     gap: 16px;
   }
 
-  .testimonials-section-navigation {
-    align-self: flex-end;
+  .testimonials-section {
+    position: relative;
+    padding-bottom: 80px;
+  }
+
+  /* Hide navigation from header on mobile */
+  .testimonials-section-title-row .testimonials-section-navigation {
+    display: none;
+  }
+
+  /* Wrapper for pagination and buttons on mobile */
+  .testimonials-pagination-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  /* Style for mobile navigation buttons */
+  #testimonials-prev-mobile {
+    order: -1;
+    flex: 0 0 auto;
+  }
+
+  #testimonials-next-mobile {
+    order: 1;
+    flex: 0 0 auto;
+  }
+
+  /* Pagination dots in center */
+  .testimonials-pagination-wrapper .testimonials-pagination {
+    order: 0;
+    flex: 0 0 auto;
   }
 
   .testimonials-section-title {
     font-size: 24px;
   }
 
-  .testimonials-carousel-slide {
-    flex: 0 0 calc(50% - 12px);
+  .testimonials-carousel {
+    overflow: hidden;
+    width: 100%;
   }
 
   .testimonials-carousel-track {
-    gap: 16px;
+    gap: 0;
+    width: 100%;
+  }
+
+  .testimonials-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   .testimonial-card {
     padding: 20px;
     gap: 12px;
     min-height: 180px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .testimonial-card-text {
@@ -1966,12 +2058,22 @@ code {
 
   .when-the-world-container {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
   }
 
   .when-the-world-content {
-    padding: 40px 20px;
+    padding: 0;
+    display: contents;
+  }
+
+  .when-the-world-top-section {
     order: 1;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 24px;
+    margin-bottom: 0;
   }
 
   .when-the-world-image-wrapper {
@@ -1980,6 +2082,27 @@ code {
     width: 100%;
     height: 400px;
     position: relative;
+    border-radius: 0;
+  }
+
+  .when-the-world-bottom-section {
+    order: 3;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .when-the-world-text {
+    order: 1;
+    margin-bottom: 24px;
+  }
+
+  .when-the-world-cta {
+    order: 2;
+    margin-bottom: 0;
   }
 
   .when-the-world-image {
@@ -2003,6 +2126,21 @@ code {
 
   .inc-5000-banner {
     padding: 60px 0;
+  }
+
+  .inc-5000-decorator {
+    width: 80px;
+    height: 80px;
+  }
+
+  .inc-5000-decorator::before {
+    width: 150px;
+    height: 40px;
+  }
+
+  .inc-5000-decorator::after {
+    width: 40px;
+    height: 150px;
   }
 
   .inc-5000-container {
@@ -2063,18 +2201,19 @@ code {
   }
 
   .email-signup-form {
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
   }
 
   .email-signup-input {
-    width: 100%;
-    min-width: auto;
+    flex: 1;
+    min-width: 0;
   }
 
   .email-signup-submit {
-    width: 100%;
-    height: 52px;
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
   }
 
   .visaelo-footer {
@@ -2140,13 +2279,27 @@ code {
     font-size: 28px;
   }
 
+  .inc-5000-decorator {
+    width: 60px;
+    height: 60px;
+  }
+
+  .inc-5000-decorator::before {
+    width: 120px;
+    height: 30px;
+  }
+
+  .inc-5000-decorator::after {
+    width: 30px;
+    height: 120px;
+  }
+
   .comparison-item {
     gap: 12px;
     padding: 16px;
   }
 
   .stats-section-container {
-    grid-template-columns: 1fr;
     gap: 16px;
   }
 
@@ -2209,10 +2362,34 @@ code {
 
   .testimonials-section {
     padding: 24px 12px;
+    padding-bottom: 70px;
   }
 
   .testimonials-section-title {
     font-size: 20px;
+  }
+
+  .testimonials-section-navigation {
+    bottom: 20px;
+    gap: 12px;
+  }
+
+  .testimonials-nav-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .testimonials-nav-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .testimonials-nav-button-prev {
+    margin-right: 12px;
+  }
+
+  .testimonials-nav-button-next {
+    margin-left: 12px;
   }
 
   .testimonials-section-icon-wrapper {
@@ -2223,8 +2400,22 @@ code {
     font-size: 12px;
   }
 
+  .testimonials-carousel {
+    width: 100%;
+  }
+
   .testimonials-carousel-slide {
     flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .testimonial-card {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .testimonials-nav-button {
@@ -2267,7 +2458,19 @@ code {
   }
 
   .when-the-world-content {
+    padding: 0;
+  }
+
+  .when-the-world-top-section {
     padding: 30px 16px;
+    border-radius: 16px;
+  }
+
+  .when-the-world-bottom-section {
+    padding: 30px 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
   }
 
   .when-the-world-headline {
@@ -2276,6 +2479,13 @@ code {
 
   .when-the-world-text {
     font-size: 14px;
+    margin-bottom: 20px;
+    order: 1;
+  }
+
+  .when-the-world-cta {
+    margin-bottom: 0;
+    order: 2;
   }
 
   .when-the-world-image-wrapper {

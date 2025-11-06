@@ -203,8 +203,19 @@ class TestimonialsCarousel {
   }
 
   attachEventListeners() {
-    this.prevButton.addEventListener('click', () => this.prev());
-    this.nextButton.addEventListener('click', () => this.next());
+    // Remove existing listeners if any
+    const prevHandler = () => this.prev();
+    const nextHandler = () => this.next();
+    
+    this.prevButton.removeEventListener('click', prevHandler);
+    this.nextButton.removeEventListener('click', nextHandler);
+    
+    this.prevButton.addEventListener('click', prevHandler);
+    this.nextButton.addEventListener('click', nextHandler);
+    
+    // Store handlers for cleanup
+    this._prevHandler = prevHandler;
+    this._nextHandler = nextHandler;
   }
 
   prev() {
@@ -231,15 +242,31 @@ class TestimonialsCarousel {
     const maxIndex = Math.max(0, this.testimonials.length - this.cardsPerView);
     this.currentIndex = Math.min(this.currentIndex, maxIndex);
     
-    const slideWidth = 100 / this.cardsPerView;
-    const gap = 24;
-    const translateX = -(this.currentIndex * (slideWidth + (gap / (this.testimonials.length / this.cardsPerView))));
-    
-    this.track.style.transform = `translateX(calc(${translateX}% + ${this.currentIndex * gap}px))`;
+    // For mobile (1 card per view), use simple 100% translation
+    if (this.cardsPerView === 1) {
+      const translateX = -(this.currentIndex * 100);
+      this.track.style.transform = `translateX(${translateX}%)`;
+    } else {
+      // For desktop/tablet with multiple cards
+      const slideWidth = 100 / this.cardsPerView;
+      const gap = 24;
+      const translateX = -(this.currentIndex * (slideWidth + (gap / (this.testimonials.length / this.cardsPerView))));
+      this.track.style.transform = `translateX(calc(${translateX}% + ${this.currentIndex * gap}px))`;
+    }
 
-    // Update button states
+    // Update button states (original buttons)
     this.prevButton.disabled = this.currentIndex === 0;
     this.nextButton.disabled = this.currentIndex >= maxIndex;
+
+    // Update cloned mobile buttons if they exist
+    const mobilePrevButton = document.getElementById('testimonials-prev-mobile');
+    const mobileNextButton = document.getElementById('testimonials-next-mobile');
+    if (mobilePrevButton) {
+      mobilePrevButton.disabled = this.currentIndex === 0;
+    }
+    if (mobileNextButton) {
+      mobileNextButton.disabled = this.currentIndex >= maxIndex;
+    }
 
     // Update pagination
     const dots = this.pagination.querySelectorAll('.testimonials-pagination-dot');
@@ -282,12 +309,86 @@ document.addEventListener('DOMContentLoaded', () => {
   if (testimonialsTrack) {
     const carousel = new TestimonialsCarousel();
 
+    // Move navigation buttons around pagination on mobile
+    const moveButtonsForMobile = () => {
+      const navigation = document.querySelector('.testimonials-section-navigation');
+      const pagination = document.getElementById('testimonials-pagination');
+      const prevButton = document.getElementById('testimonials-prev');
+      const nextButton = document.getElementById('testimonials-next');
+      
+      if (navigation && pagination && prevButton && nextButton) {
+        const isMobile = window.innerWidth <= 768;
+        const wrapper = document.querySelector('.testimonials-pagination-wrapper');
+        
+        if (isMobile) {
+          // On mobile: create wrapper and move buttons around pagination
+          if (!wrapper) {
+            // Create wrapper div
+            const newWrapper = document.createElement('div');
+            newWrapper.className = 'testimonials-pagination-wrapper';
+            newWrapper.style.display = 'flex';
+            newWrapper.style.alignItems = 'center';
+            newWrapper.style.justifyContent = 'center';
+            newWrapper.style.gap = '16px';
+            
+            // Clone buttons
+            const prevClone = prevButton.cloneNode(true);
+            const nextClone = nextButton.cloneNode(true);
+            prevClone.id = 'testimonials-prev-mobile';
+            nextClone.id = 'testimonials-next-mobile';
+            prevClone.className = 'testimonials-nav-button testimonials-nav-button-prev';
+            nextClone.className = 'testimonials-nav-button testimonials-nav-button-next';
+            
+            // Remove any existing aria-labels that might conflict
+            prevClone.removeAttribute('aria-label');
+            nextClone.removeAttribute('aria-label');
+            
+            // Wrap pagination and insert buttons
+            pagination.parentNode.insertBefore(newWrapper, pagination);
+            newWrapper.appendChild(prevClone);
+            newWrapper.appendChild(pagination);
+            newWrapper.appendChild(nextClone);
+            
+            // Attach event listeners to cloned buttons with proper binding
+            prevClone.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              carousel.prev();
+            });
+            nextClone.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              carousel.next();
+            });
+            
+            // Hide original buttons in header
+            navigation.style.display = 'none';
+          }
+        } else {
+          // On desktop: restore original layout
+          if (wrapper) {
+            // Move pagination back to original location
+            const section = document.querySelector('.testimonials-section');
+            if (section && pagination) {
+              section.appendChild(pagination);
+            }
+            wrapper.remove();
+            if (navigation) navigation.style.display = 'flex';
+          }
+        }
+      }
+    };
+
+    // Initial call
+    moveButtonsForMobile();
+
     // Handle responsive updates
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         carousel.updateResponsiveCardsPerView();
+        moveButtonsForMobile();
       }, 250);
     });
   }
