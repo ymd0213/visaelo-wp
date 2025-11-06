@@ -115,11 +115,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Previous button handler
+  // Step 2: Continue to passport details
+  const saveContinueBtn = document.getElementById('save-continue-btn');
+  if (saveContinueBtn) {
+    saveContinueBtn.addEventListener('click', () => {
+      // Get traveler count from step 2
+      const travelers = document.querySelectorAll('.app-traveler-card');
+      const travelerCount = travelers.length;
+      showStep('2b', { numberOfApplicants: travelerCount });
+    });
+  }
+
+  // Previous button handler (step 2)
   const previousBtn = document.getElementById('previous-btn');
   if (previousBtn) {
     previousBtn.addEventListener('click', () => {
       showStep(1);
+    });
+  }
+
+  // Step 2b: Previous button (go back to personal details)
+  const passportPreviousBtn = document.getElementById('passport-previous-btn');
+  if (passportPreviousBtn) {
+    passportPreviousBtn.addEventListener('click', () => {
+      const travelers = document.querySelectorAll('.app-traveler-card');
+      const travelerCount = travelers.length;
+      showStep(2, { numberOfApplicants: travelerCount });
+    });
+  }
+
+  // Step 2b: Continue button (go to step 3 - will be implemented later)
+  const passportContinueBtn = document.getElementById('passport-continue-btn');
+  if (passportContinueBtn) {
+    passportContinueBtn.addEventListener('click', () => {
+      // TODO: Navigate to step 3 (checkout)
+      console.log('Navigate to step 3');
     });
   }
 
@@ -162,6 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Store traveler data globally
+let travelerData = {
+  count: 1,
+  travelers: []
+};
+
 // Function to show a specific step
 function showStep(stepNumber, formData = null) {
   // Hide all steps
@@ -178,6 +214,21 @@ function showStep(stepNumber, formData = null) {
     // Initialize date dropdowns for step 2
     if (stepNumber === 2) {
       initializeDateDropdowns();
+      // Reset passport details initialization when going back to step 2
+      const passportTravelersList = document.getElementById('passport-travelers-list');
+      if (passportTravelersList) {
+        passportTravelersList.dataset.initialized = 'false';
+      }
+    }
+    
+    // Initialize passport details for step 2b
+    if (stepNumber === '2b') {
+      // Reset initialization flag to allow re-initialization
+      const passportTravelersList = document.getElementById('passport-travelers-list');
+      if (passportTravelersList) {
+        passportTravelersList.dataset.initialized = 'false';
+      }
+      initializePassportDetails(formData);
     }
   }
 
@@ -190,6 +241,10 @@ function showStep(stepNumber, formData = null) {
   // Update sidebar if needed
   if (stepNumber === 2 && formData) {
     updateSidebarStep2(formData);
+    // Store traveler count
+    travelerData.count = formData.numberOfApplicants || 1;
+  } else if (stepNumber === '2b') {
+    updateSidebarPassport(formData);
   }
 }
 
@@ -198,8 +253,16 @@ function updateProgressIndicator(currentStep) {
   const progressSteps = document.querySelectorAll('.app-progress-step');
   const progressBars = document.querySelectorAll('.app-progress-bar');
   
+  // Convert step number to numeric value for comparison
+  let stepNum = currentStep;
+  if (currentStep === '2b') {
+    stepNum = 2.5; // Halfway between step 2 and step 3
+  } else {
+    stepNum = parseInt(currentStep) || 1;
+  }
+  
   progressSteps.forEach((step, index) => {
-    const stepNum = index + 1;
+    const stepIndex = index + 1;
     const circle = step.querySelector('.app-progress-step-circle');
     const dot = step.querySelector('.app-progress-step-dot');
     
@@ -209,7 +272,7 @@ function updateProgressIndicator(currentStep) {
     circle.style.backgroundColor = '#ffffff';
     if (dot) dot.style.display = 'none';
     
-    if (stepNum < currentStep) {
+    if (stepIndex < stepNum) {
       // Completed step
       step.classList.add('app-progress-step-active');
       circle.style.borderColor = '#3b82f6';
@@ -239,7 +302,7 @@ function updateProgressIndicator(currentStep) {
         checkmark.appendChild(path);
         circle.appendChild(checkmark);
       }
-    } else if (stepNum === currentStep) {
+    } else if (stepIndex === stepNum) {
       // Current step
       step.classList.add('app-progress-step-active');
       circle.style.borderColor = '#3b82f6';
@@ -262,10 +325,19 @@ function updateProgressIndicator(currentStep) {
 
   // Update progress bars
   progressBars.forEach((bar, index) => {
-    if (index < currentStep - 1) {
+    // Bar between step 2 and step 3 (index 1)
+    if (currentStep === '2b' && index === 1) {
+      // Half-filled progress bar
       bar.classList.add('app-progress-bar-active');
+      bar.style.background = 'linear-gradient(to right, #3b82f6 50%, #eff2f6 50%)';
+    } else if (index < stepNum - 1) {
+      // Fully filled progress bar
+      bar.classList.add('app-progress-bar-active');
+      bar.style.background = '#3b82f6';
     } else {
+      // Empty progress bar
       bar.classList.remove('app-progress-bar-active');
+      bar.style.background = '#eff2f6';
     }
   });
 }
@@ -282,7 +354,7 @@ function updatePageTitle(stepNumber) {
     if (subtitleElement) {
       subtitleElement.style.display = 'block';
     }
-  } else if (stepNumber === 2) {
+  } else if (stepNumber === 2 || stepNumber === '2b') {
     titleElement.textContent = 'United Kingdom ETA';
     if (subtitleElement) {
       subtitleElement.style.display = 'none';
@@ -538,5 +610,300 @@ function initializeDateDropdowns() {
       initializeDateDropdownsForTraveler(travelerNum);
     }
   });
+}
+
+// Function to check if a traveler has valid input
+function isValidTraveler(travelerNum) {
+  const firstName = document.getElementById(`traveler-${travelerNum}-firstname`)?.value?.trim() || '';
+  const lastName = document.getElementById(`traveler-${travelerNum}-lastname`)?.value?.trim() || '';
+  const email = document.getElementById(`traveler-${travelerNum}-email`)?.value?.trim() || '';
+  
+  // Check if traveler has at least first name and last name
+  // Email is optional but if provided should be valid format
+  const hasValidName = firstName.length > 0 && lastName.length > 0;
+  const hasValidEmail = email.length === 0 || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  
+  return hasValidName && hasValidEmail;
+}
+
+// Function to initialize passport details step
+function initializePassportDetails(formData) {
+  const passportTravelersList = document.getElementById('passport-travelers-list');
+  if (!passportTravelersList) return;
+
+  // Check if already initialized to prevent duplicates
+  if (passportTravelersList.dataset.initialized === 'true') {
+    return;
+  }
+
+  // Clear existing content
+  passportTravelersList.innerHTML = '';
+
+  // Get actual traveler cards from step 2 (not from formData count)
+  const step2TravelerCards = document.querySelectorAll('#step-2 .app-traveler-card');
+  
+  // Filter only valid travelers (those with valid input values)
+  const validTravelers = [];
+  let validTravelerIndex = 1;
+  
+  step2TravelerCards.forEach((card, index) => {
+    const travelerNum = index + 1;
+    
+    // Check if this traveler has valid input
+    if (isValidTraveler(travelerNum)) {
+      const firstName = document.getElementById(`traveler-${travelerNum}-firstname`)?.value?.trim() || '';
+      const lastName = document.getElementById(`traveler-${travelerNum}-lastname`)?.value?.trim() || '';
+      const name = `${firstName} ${lastName}`.trim() || `Traveler #${validTravelerIndex}`;
+      
+      validTravelers.push({ 
+        num: validTravelerIndex, 
+        originalNum: travelerNum,
+        name: name 
+      });
+      validTravelerIndex++;
+    }
+  });
+
+  // If no valid travelers, show error or return
+  if (validTravelers.length === 0) {
+    alert('Please fill in valid traveler information (first name, last name, and valid email if provided) before continuing.');
+    // Go back to step 2
+    const travelers = document.querySelectorAll('.app-traveler-card');
+    const travelerCount = travelers.length;
+    showStep(2, { numberOfApplicants: travelerCount });
+    return;
+  }
+
+  // Create passport detail cards for each valid traveler
+  validTravelers.forEach((traveler, index) => {
+    const isFirst = index === 0;
+    const travelerCard = createPassportDetailCard(traveler.num, traveler.name, isFirst);
+    passportTravelersList.appendChild(travelerCard);
+  });
+
+  // Initialize nationality selects for valid travelers
+  validTravelers.forEach(traveler => {
+    initializePassportDropdowns(traveler.num);
+  });
+
+  // Attach toggle event listeners
+  attachPassportToggleListeners();
+
+  // Mark as initialized
+  passportTravelersList.dataset.initialized = 'true';
+}
+
+// Function to create passport detail card
+function createPassportDetailCard(travelerNum, travelerName, isExpanded = true) {
+  const card = document.createElement('div');
+  card.className = `app-traveler-card ${isExpanded ? '' : 'app-traveler-collapsed'}`;
+  card.setAttribute('data-passport-traveler', travelerNum);
+
+  card.innerHTML = `
+    <div class="app-traveler-header" data-passport-toggle="${travelerNum}">
+      <h3 class="app-traveler-title">Traveler #${travelerNum} ${travelerName ? `(${travelerName})` : ''}</h3>
+      <svg class="app-traveler-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="app-traveler-content" data-passport-content="${travelerNum}" style="${isExpanded ? 'display: block;' : 'display: none;'}">
+      <div class="app-form">
+        <!-- Nationality on passport -->
+        <div class="app-form-field">
+          <label class="app-form-label">Nationality on passport</label>
+          <div class="custom-select-wrapper">
+            <button class="custom-select-button" id="passport-${travelerNum}-nationality">
+              <span class="select-button-content">
+                <span>Select country</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="custom-select-dropdown" id="passport-${travelerNum}-nationality-dropdown" style="display: none;"></div>
+          </div>
+          <p class="app-form-hint">UK residents do not need to apply for a UK ETA.</p>
+        </div>
+        
+        <!-- Passport number -->
+        <div class="app-form-field">
+          <label class="app-form-label">Passport number</label>
+          <input type="text" class="app-form-input" id="passport-${travelerNum}-number" placeholder="Passport number">
+        </div>
+        
+        <!-- Passport expiration date -->
+        <div class="app-form-field">
+          <label class="app-form-label">Passport expiration date</label>
+          <div class="app-date-input">
+            <div class="custom-select-wrapper">
+              <button class="custom-select-button app-date-select" id="passport-${travelerNum}-exp-day" data-placeholder="Day">
+                <span class="select-button-content">
+                  <span>Day</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="custom-select-dropdown" id="passport-${travelerNum}-exp-day-dropdown" style="display: none;"></div>
+            </div>
+            <div class="custom-select-wrapper">
+              <button class="custom-select-button app-date-select" id="passport-${travelerNum}-exp-month" data-placeholder="Month">
+                <span class="select-button-content">
+                  <span>Month</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="custom-select-dropdown" id="passport-${travelerNum}-exp-month-dropdown" style="display: none;"></div>
+            </div>
+            <div class="custom-select-wrapper">
+              <button class="custom-select-button app-date-select" id="passport-${travelerNum}-exp-year" data-placeholder="Years">
+                <span class="select-button-content">
+                  <span>Years</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="custom-select-dropdown" id="passport-${travelerNum}-exp-year-dropdown" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Do you have another nationality? -->
+        <div class="app-form-field">
+          <label class="app-form-label">Do you have another nationality?</label>
+          <div class="app-radio-group">
+            <button class="app-radio-btn" data-passport-nationality="${travelerNum}" data-value="yes">
+              <span>Yes</span>
+            </button>
+            <button class="app-radio-btn app-radio-btn-active" data-passport-nationality="${travelerNum}" data-value="no">
+              <span>No</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  return card;
+}
+
+// Function to initialize passport dropdowns
+function initializePassportDropdowns(travelerNum) {
+  // Nationality select
+  const nationalityButton = document.getElementById(`passport-${travelerNum}-nationality`);
+  const nationalityDropdown = document.getElementById(`passport-${travelerNum}-nationality-dropdown`);
+  if (nationalityButton && nationalityDropdown && !nationalityButton.dataset.initialized) {
+    // Default to United States
+    const defaultCountry = countryOptions.find(country => country.value === 'us');
+    new CustomSelect(`passport-${travelerNum}-nationality`, `passport-${travelerNum}-nationality-dropdown`, countryOptions, defaultCountry);
+    nationalityButton.dataset.initialized = 'true';
+  }
+
+  // Expiration date dropdowns - use a helper function
+  const dayOptions = Array.from({ length: 31 }, (_, i) => ({
+    value: String(i + 1).padStart(2, '0'),
+    label: String(i + 1).padStart(2, '0')
+  }));
+
+  const monthOptions = [
+    { value: '01', label: 'January' },
+    { value: '02', label: 'February' },
+    { value: '03', label: 'March' },
+    { value: '04', label: 'April' },
+    { value: '05', label: 'May' },
+    { value: '06', label: 'June' },
+    { value: '07', label: 'July' },
+    { value: '08', label: 'August' },
+    { value: '09', label: 'September' },
+    { value: '10', label: 'October' },
+    { value: '11', label: 'November' },
+    { value: '12', label: 'December' }
+  ];
+
+  const currentYear = new Date().getFullYear();
+  const yearOptions = Array.from({ length: 21 }, (_, i) => {
+    const year = currentYear + i;
+    return { value: String(year), label: String(year) };
+  });
+
+  const baseId = `passport-${travelerNum}-exp`;
+
+  // Day select
+  const dayButton = document.getElementById(`${baseId}-day`);
+  const dayDropdown = document.getElementById(`${baseId}-day-dropdown`);
+  if (dayButton && dayDropdown && !dayButton.dataset.initialized) {
+    new CustomSelect(`${baseId}-day`, `${baseId}-day-dropdown`, dayOptions, null);
+    dayButton.dataset.initialized = 'true';
+  }
+
+  // Month select
+  const monthButton = document.getElementById(`${baseId}-month`);
+  const monthDropdown = document.getElementById(`${baseId}-month-dropdown`);
+  if (monthButton && monthDropdown && !monthButton.dataset.initialized) {
+    new CustomSelect(`${baseId}-month`, `${baseId}-month-dropdown`, monthOptions, null);
+    monthButton.dataset.initialized = 'true';
+  }
+
+  // Year select
+  const yearButton = document.getElementById(`${baseId}-year`);
+  const yearDropdown = document.getElementById(`${baseId}-year-dropdown`);
+  if (yearButton && yearDropdown && !yearButton.dataset.initialized) {
+    new CustomSelect(`${baseId}-year`, `${baseId}-year-dropdown`, yearOptions, null);
+    yearButton.dataset.initialized = 'true';
+  }
+}
+
+// Function to attach passport toggle listeners
+function attachPassportToggleListeners() {
+  const toggles = document.querySelectorAll('[data-passport-toggle]');
+  toggles.forEach(toggle => {
+    const travelerNum = toggle.getAttribute('data-passport-toggle');
+    toggle.addEventListener('click', () => {
+      const card = document.querySelector(`[data-passport-traveler="${travelerNum}"]`);
+      const content = document.querySelector(`[data-passport-content="${travelerNum}"]`);
+      
+      if (card && content) {
+        const isCollapsed = card.classList.contains('app-traveler-collapsed');
+        if (isCollapsed) {
+          card.classList.remove('app-traveler-collapsed');
+          content.style.display = 'block';
+        } else {
+          card.classList.add('app-traveler-collapsed');
+          content.style.display = 'none';
+        }
+      }
+    });
+  });
+
+  // Attach nationality radio button listeners
+  const nationalityBtns = document.querySelectorAll('[data-passport-nationality]');
+  nationalityBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const travelerNum = btn.getAttribute('data-passport-nationality');
+      const value = btn.getAttribute('data-value');
+      
+      // Remove active class from all buttons for this traveler
+      document.querySelectorAll(`[data-passport-nationality="${travelerNum}"]`).forEach(b => {
+        b.classList.remove('app-radio-btn-active');
+      });
+      
+      // Add active class to clicked button
+      btn.classList.add('app-radio-btn-active');
+    });
+  });
+}
+
+// Function to update sidebar for passport step
+function updateSidebarPassport(formData) {
+  const travelerCount = formData?.numberOfApplicants || travelerData.count || 1;
+  const travelersText = travelerCount === 1 ? '1 Traveler' : `${travelerCount} Travelers`;
+  
+  const summaryTravelers = document.getElementById('passport-summary-travelers');
+  if (summaryTravelers) {
+    summaryTravelers.textContent = travelersText;
+  }
 }
 

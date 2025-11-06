@@ -3188,3 +3188,40 @@ code {
   }
 }
 
+/* Radio Button Group */
+.app-radio-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.app-radio-btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #6b7280;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.app-radio-btn:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+.app-radio-btn-active {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.app-radio-btn-active:hover {
+  border-color: #2563eb;
+  background-color: #2563eb;
+}
+
