@@ -2731,42 +2731,302 @@ code {
   .app-title {
     font-size: 36px;
   }
+
+  .app-progress-bar {
+    margin: 0 16px;
+  }
 }
 
 @media (max-width: 768px) {
+  .app-page {
+    width: calc(100% - 16px);
+    min-height: calc(100vh - 16px);
+    margin: 8px;
+  }
+
   .app-header {
-    padding: 20px 24px;
+    padding: 20px 20px 48px 20px;
+  }
+
+  .app-header-container {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .app-logo-img {
+    max-height: 32px;
+  }
+
+  .app-help-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .app-help-btn-icon {
+    width: 14px;
+    height: 14px;
   }
 
   .app-intro {
-    padding: 24px 24px 0;
-  }
-
-  .app-content {
-    padding: 24px;
-    gap: 24px;
+    padding: 0;
+    margin: 0;
   }
 
   .app-title {
-    font-size: 32px;
+    font-size: 28px;
+    margin: 24px 0 12px 0;
   }
 
   .app-subtitle {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.4;
   }
 
   .app-progress {
-    padding: 16px;
+    left: 50%;
+    bottom: 0;
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    padding: 12px 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transform: translate(-50%, 50%);
+  }
+
+  .app-progress-step {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
   }
 
   .app-progress-bar {
-    top: -16px;
-    margin: 0 8px;
+    margin: 0 4px;
+    min-width: 24px;
   }
 
   .app-progress-step-circle {
     width: 32px;
     height: 32px;
+    border-width: 6px;
+  }
+
+  .app-progress-step-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .app-progress-step-label {
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .app-content-container {
+    padding: 40px 20px 24px 20px;
+  }
+
+  .app-form-card {
+    padding: 24px 20px;
+    border-radius: 12px;
+  }
+
+  .app-form {
+    gap: 24px;
+  }
+
+  .app-form-field {
+    padding: 14px;
+  }
+
+  .app-form-label {
+    font-size: 15px;
+  }
+
+  .app-form-input {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+
+  .app-sidebar-card {
+    padding: 24px 20px;
+  }
+
+  .app-sidebar-title {
+    font-size: 20px;
+  }
+
+  .app-feature-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .app-start-btn,
+  .app-continue-btn,
+  .app-add-traveler-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .app-previous-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .app-section-title {
+    font-size: 24px;
+  }
+
+  .app-section-subtitle {
+    font-size: 15px;
+  }
+
+  .app-processing-option {
+    padding: 16px 20px;
+  }
+
+  .app-processing-option-price {
+    font-size: 18px;
+  }
+
+  .app-processing-option-label {
+    font-size: 15px;
+  }
+
+  .app-review-card {
+    padding: 20px;
+  }
+
+  .app-review-card-title {
+    font-size: 18px;
+  }
+
+  .app-review-features {
+    grid-template-columns: 1fr;
+  }
+
+  .app-review-feature {
+    padding: 16px;
+  }
+
+  .app-protection-card {
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .app-protection-checkbox-wrapper {
+    align-self: flex-end;
+    margin-top: 12px;
+  }
+
+  .app-delivery-info {
+    position: relative;
+    transform: none;
+    margin-bottom: 24px;
+  }
+
+  .app-delivery-badge {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .app-summary {
+    padding-bottom: 20px;
+  }
+
+  .app-summary-label {
+    font-size: 15px;
+  }
+
+  .app-summary-value {
+    font-size: 15px;
+  }
+
+  .app-summary-subtitle {
+    font-size: 13px;
+  }
+
+  .app-security-message {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .app-security-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-page {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .app-header {
+    padding: 16px 16px 40px 16px;
+    border-radius: 0;
+  }
+
+  .app-header-container {
+    flex-wrap: wrap;
+  }
+
+  .app-logo-img {
+    max-height: 28px;
+  }
+
+  .app-help-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    gap: 4px;
+  }
+
+  .app-help-btn span {
+    display: none;
+  }
+
+  .app-help-btn-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+  }
+
+  .app-title {
+    font-size: 24px;
+    margin: 20px 0 10px 0;
+    line-height: 1.3;
+  }
+
+  .app-subtitle {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .app-progress {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+    padding: 10px 12px;
+    gap: 4px;
+  }
+
+  .app-progress-step {
+    gap: 6px;
+  }
+
+  .app-progress-bar {
+    margin: 0 2px;
+    min-width: 16px;
+  }
+
+  .app-progress-step-circle {
+    width: 28px;
+    height: 28px;
+    border-width: 5px;
   }
 
   .app-progress-step-dot {
@@ -2775,63 +3035,275 @@ code {
   }
 
   .app-progress-step-label {
-    font-size: 12px;
+    font-size: 11px;
+    max-width: 60px;
+    word-wrap: break-word;
+  }
+
+  .app-content-container {
+    padding: 32px 16px 20px 16px;
+    border-radius: 0;
   }
 
   .app-form-card {
-    padding: 24px;
+    padding: 20px 16px;
+    border-radius: 10px;
   }
 
   .app-form {
-    gap: 24px;
+    gap: 20px;
   }
 
-  .app-sidebar-card {
-    padding: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .app-header {
-    padding: 16px 20px;
-  }
-
-  .app-logo-img {
-    max-height: 36px;
-  }
-
-  .app-help-btn {
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-
-  .app-intro {
-    padding: 16px 16px 0;
-  }
-
-  .app-content {
-    padding: 16px;
-  }
-
-  .app-title {
-    font-size: 28px;
-  }
-
-  .app-progress {
+  .app-form-field {
     padding: 12px;
   }
 
-  .app-progress-bar {
-    top: -12px;
-    margin: 0 6px;
+  .app-form-label {
+    font-size: 14px;
   }
 
-  .app-form-card {
-    padding: 20px;
+  .app-form-input {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .app-form-hint {
+    font-size: 13px;
+  }
+
+  .app-date-input {
+    gap: 8px;
+  }
+
+  .custom-select-button {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  .app-number-input {
+    border-radius: 6px;
+  }
+
+  .app-number-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .app-number-display {
+    height: 44px;
+    font-size: 15px;
   }
 
   .app-sidebar-card {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .app-badge {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .app-sidebar-title {
+    font-size: 18px;
+  }
+
+  .app-features {
+    gap: 16px;
+  }
+
+  .app-feature {
+    padding-bottom: 16px;
+  }
+
+  .app-feature-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .app-feature-label {
+    font-size: 13px;
+  }
+
+  .app-feature-value {
+    font-size: 15px;
+  }
+
+  .app-start-btn,
+  .app-continue-btn,
+  .app-add-traveler-btn {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  .app-previous-btn {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  .app-section-title {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .app-section-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .app-traveler-header {
+    padding: 14px 16px;
+  }
+
+  .app-traveler-title {
+    font-size: 16px;
+  }
+
+  .app-traveler-content {
+    padding: 0 16px 16px 16px;
+  }
+
+  .app-checkbox-label {
+    font-size: 13px;
+  }
+
+  .app-processing-options {
+    gap: 12px;
+  }
+
+  .app-processing-option {
+    padding: 14px 16px;
+  }
+
+  .app-processing-option-content {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .app-processing-option-price {
+    font-size: 17px;
+  }
+
+  .app-processing-option-label {
+    font-size: 14px;
+  }
+
+  .app-review-card {
+    padding: 16px;
+  }
+
+  .app-review-card-title {
+    font-size: 17px;
+  }
+
+  .app-review-features {
+    gap: 0;
+  }
+
+  .app-review-feature {
+    padding: 14px 12px;
+  }
+
+  .app-feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-review-feature-label {
+    font-size: 13px;
+  }
+
+  .app-review-feature-value {
+    font-size: 15px;
+  }
+
+  .app-protection-card {
+    padding: 16px;
+  }
+
+  .app-protection-title {
+    font-size: 16px;
+  }
+
+  .app-protection-description {
+    font-size: 13px;
+  }
+
+  .app-delivery-info {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .app-delivery-badge {
+    padding: 6px 12px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .app-delivery-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .app-summary {
+    padding-bottom: 16px;
+    gap: 14px;
+  }
+
+  .app-summary-label {
+    font-size: 14px;
+  }
+
+  .app-summary-value {
+    font-size: 14px;
+  }
+
+  .app-summary-total .app-summary-label,
+  .app-summary-total .app-summary-value {
+    font-size: 16px;
+  }
+
+  .app-summary-subtitle {
+    font-size: 12px;
+  }
+
+  .app-sidebar-actions {
+    gap: 10px;
+  }
+
+  .app-security-message {
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+
+  .app-security-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .app-security-text {
+    font-size: 12px;
+  }
+
+  /* Improve touch targets for mobile */
+  .app-traveler-header {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .app-radio-btn {
+    padding: 12px 16px;
+    font-size: 15px;
+    min-height: 44px;
+  }
+
+  .app-checkbox-input {
+    width: 18px;
+    height: 18px;
   }
 }
 
