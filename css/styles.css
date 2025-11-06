@@ -2922,15 +2922,31 @@ code {
     margin-top: 12px;
   }
 
+  /* Remove absolute positioning for mobile - flow naturally inside form card */
+  .app-form-card:has(.app-delivery-info) {
+    padding-top: 40px;
+  }
+
   .app-delivery-info {
-    position: relative;
-    transform: none;
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
     margin-bottom: 24px;
+    margin-top: 0;
+    flex-wrap: wrap;
+    order: -1;
   }
 
   .app-delivery-badge {
-    padding: 6px 12px;
+    padding: 8px 14px;
     font-size: 13px;
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+
+  .app-delivery-badge span {
+    white-space: normal;
+    line-height: 1.4;
   }
 
   .app-summary {
@@ -3230,22 +3246,42 @@ code {
     font-size: 13px;
   }
 
+  /* Remove absolute positioning for mobile - flow naturally inside form card */
+  .app-form-card:has(.app-delivery-info) {
+    padding-top: 20px;
+  }
+
   .app-delivery-info {
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 20px;
+    margin-top: 0;
+    display: flex;
+    order: -1;
   }
 
   .app-delivery-badge {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
+    border-radius: 8px;
+    white-space: normal;
+  }
+
+  .app-delivery-badge span {
+    flex: 1;
+    line-height: 1.5;
+    word-wrap: break-word;
   }
 
   .app-delivery-icon {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
   }
 
   .app-summary {
@@ -3304,6 +3340,55 @@ code {
   .app-checkbox-input {
     width: 18px;
     height: 18px;
+  }
+}
+
+/* Extra small devices (360px and below) */
+@media (max-width: 360px) {
+  .app-title {
+    font-size: 22px;
+  }
+
+  .app-progress-step-label {
+    font-size: 10px;
+    max-width: 50px;
+  }
+
+  .app-progress-step-circle {
+    width: 26px;
+    height: 26px;
+    border-width: 4px;
+  }
+
+  .app-progress-step-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .app-delivery-badge {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .app-delivery-badge span {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .app-form-card {
+    padding: 16px 12px;
+  }
+
+  .app-section-title {
+    font-size: 18px;
+  }
+
+  .app-processing-option-price {
+    font-size: 16px;
+  }
+
+  .app-processing-option-label {
+    font-size: 13px;
   }
 }
 
@@ -3861,6 +3946,17 @@ code {
   transform: translateY(-50%);
 }
 
+/* For form cards containing delivery info, add top padding */
+.app-form-card:has(.app-delivery-info) {
+  position: relative;
+  padding-top: 60px;
+}
+
+/* Fallback for browsers without :has() support */
+.app-form-card .app-delivery-info {
+  position: absolute;
+}
+
 .app-delivery-badge {
   display: inline-flex;
   align-items: center;
@@ -3870,6 +3966,11 @@ code {
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.app-delivery-badge span {
+  display: inline-block;
 }
 
 .app-delivery-badge-dark {
