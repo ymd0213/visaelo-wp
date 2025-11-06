@@ -425,6 +425,105 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Step 3: Checkout -->
+                    <div class="app-step app-step-3" id="step-3" style="display: none;">
+                        <div class="app-main">
+                            <div class="app-form-card">
+                                <h2 class="app-section-title">Choose your processing time</h2>
+                                
+                                <div class="app-processing-options">
+                                    <!-- Standard Option -->
+                                    <div class="app-processing-option" data-processing="standard">
+                                        <div class="app-processing-option-content">
+                                            <div class="app-processing-option-info">
+                                                <div class="app-processing-option-price">USD $112.65</div>
+                                                <div class="app-processing-option-label">Standard - 24 hour processing</div>
+                                            </div>
+                                            <div class="app-processing-option-radio">
+                                                <input type="radio" name="processing-time" id="processing-standard" value="standard" class="app-radio-input">
+                                                <label for="processing-standard" class="app-radio-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Rush Option -->
+                                    <div class="app-processing-option app-processing-option-selected" data-processing="rush">
+                                        <div class="app-processing-option-content">
+                                            <div class="app-processing-option-info">
+                                                <div class="app-processing-option-price">USD $162.65</div>
+                                                <div class="app-processing-option-label">Rush - 4 hour processing</div>
+                                            </div>
+                                            <div class="app-processing-option-radio">
+                                                <input type="radio" name="processing-time" id="processing-rush" value="rush" class="app-radio-input" checked>
+                                                <label for="processing-rush" class="app-radio-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Super Rush Option -->
+                                    <div class="app-processing-option" data-processing="super-rush">
+                                        <div class="app-processing-option-content">
+                                            <div class="app-processing-option-info">
+                                                <div class="app-processing-option-price">USD $202.65</div>
+                                                <div class="app-processing-option-label">Super Rush - 1 hour processing</div>
+                                            </div>
+                                            <div class="app-processing-option-radio">
+                                                <input type="radio" name="processing-time" id="processing-super-rush" value="super-rush" class="app-radio-input">
+                                                <label for="processing-super-rush" class="app-radio-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Sidebar Step 3 -->
+                        <div class="app-sidebar">
+                            <div class="app-sidebar-card">
+                                <div class="app-summary">
+                                    <div class="app-summary-item">
+                                        <span class="app-summary-label">United Kingdom ETA</span>
+                                        <span class="app-summary-value" id="checkout-summary-travelers">1 Traveler</span>
+                                    </div>
+                                    <div class="app-summary-item">
+                                        <span class="app-summary-label">Government fees</span>
+                                        <span class="app-summary-value" id="checkout-summary-fees">$22.66</span>
+                                    </div>
+                                    <div class="app-summary-item" id="checkout-processing-item">
+                                        <span class="app-summary-label" id="checkout-processing-label">Rush, 4 hour</span>
+                                        <span class="app-summary-value" id="checkout-processing-price">$140.00</span>
+                                    </div>
+                                    <div class="app-summary-item app-summary-total">
+                                        <span class="app-summary-label">Total</span>
+                                        <div class="app-summary-total-value-wrapper">
+                                            <span class="app-summary-value" id="checkout-total">USD $162.65</span>
+                                            <span class="app-summary-subtitle">(Includes taxes and fees)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-sidebar-actions">
+                                    <button class="app-continue-btn" id="checkout-continue-btn">
+                                        <img src="images/icons/icon_turn_right.png" alt="Continue" class="app-continue-btn-icon">
+                                        <span>Save and continue</span>
+                                    </button>
+                                    <button class="app-previous-btn" id="checkout-previous-btn">
+                                        <img src="images/icons/icon_turn_left.png" alt="Previous" class="app-previous-btn-icon">
+                                        <span>← Previous</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="app-security-message">
+                                    <img src="images/icons/icon_shield.png" alt="Security" class="app-security-icon">
+                                    <p class="app-security-text">
+                                        We take strong measures to protect your information. For more details see 
+                                        <a href="#" class="app-link">how we keep your data safe</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

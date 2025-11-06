@@ -144,12 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 2b: Continue button (go to step 3 - will be implemented later)
+  // Step 2b: Continue button (go to step 3)
   const passportContinueBtn = document.getElementById('passport-continue-btn');
   if (passportContinueBtn) {
     passportContinueBtn.addEventListener('click', () => {
-      // TODO: Navigate to step 3 (checkout)
-      console.log('Navigate to step 3');
+      // Get traveler count from passport step
+      const passportTravelers = document.querySelectorAll('[data-passport-traveler]');
+      const travelerCount = passportTravelers.length;
+      showStep(3, { numberOfApplicants: travelerCount });
     });
   }
 
@@ -188,6 +190,44 @@ document.addEventListener('DOMContentLoaded', () => {
     helpBtn.addEventListener('click', () => {
       // TODO: Implement help functionality
       console.log('Help button clicked');
+    });
+  }
+
+  // Step 3: Processing time selection handlers
+  const processingOptions = document.querySelectorAll('.app-processing-option');
+  processingOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const processingType = option.getAttribute('data-processing');
+      selectProcessingTime(processingType);
+    });
+  });
+
+  // Step 3: Radio button change handlers
+  const processingRadios = document.querySelectorAll('input[name="processing-time"]');
+  processingRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      const processingType = radio.value;
+      selectProcessingTime(processingType);
+    });
+  });
+
+  // Step 3: Previous button (go back to step 2b)
+  const checkoutPreviousBtn = document.getElementById('checkout-previous-btn');
+  if (checkoutPreviousBtn) {
+    checkoutPreviousBtn.addEventListener('click', () => {
+      const passportTravelers = document.querySelectorAll('[data-passport-traveler]');
+      const travelerCount = passportTravelers.length;
+      showStep('2b', { numberOfApplicants: travelerCount });
+    });
+  }
+
+  // Step 3: Continue button (final step - could submit form or go to payment)
+  const checkoutContinueBtn = document.getElementById('checkout-continue-btn');
+  if (checkoutContinueBtn) {
+    checkoutContinueBtn.addEventListener('click', () => {
+      // TODO: Submit form or navigate to payment page
+      console.log('Checkout complete - ready to submit');
+      alert('Checkout complete! This would normally proceed to payment.');
     });
   }
 });
@@ -230,6 +270,11 @@ function showStep(stepNumber, formData = null) {
       }
       initializePassportDetails(formData);
     }
+    
+    // Initialize checkout for step 3
+    if (stepNumber === 3) {
+      initializeCheckout(formData);
+    }
   }
 
   // Update progress indicator
@@ -245,6 +290,8 @@ function showStep(stepNumber, formData = null) {
     travelerData.count = formData.numberOfApplicants || 1;
   } else if (stepNumber === '2b') {
     updateSidebarPassport(formData);
+  } else if (stepNumber === 3) {
+    updateSidebarCheckout(formData);
   }
 }
 
@@ -354,7 +401,7 @@ function updatePageTitle(stepNumber) {
     if (subtitleElement) {
       subtitleElement.style.display = 'block';
     }
-  } else if (stepNumber === 2 || stepNumber === '2b') {
+  } else if (stepNumber === 2 || stepNumber === '2b' || stepNumber === 3) {
     titleElement.textContent = 'United Kingdom ETA';
     if (subtitleElement) {
       subtitleElement.style.display = 'none';
@@ -905,5 +952,92 @@ function updateSidebarPassport(formData) {
   if (summaryTravelers) {
     summaryTravelers.textContent = travelersText;
   }
+}
+
+// Processing time pricing data
+// Government fees: $22.66 per traveler
+const processingPricing = {
+  standard: {
+    label: 'Standard, 24 hour',
+    price: 90.00, // $112.65 total - $22.66 government fees
+    total: 112.65
+  },
+  rush: {
+    label: 'Rush, 4 hour',
+    price: 140.00, // $162.65 total - $22.66 government fees
+    total: 162.65
+  },
+  'super-rush': {
+    label: 'Super Rush, 1 hour',
+    price: 179.99, // $202.65 total - $22.66 government fees
+    total: 202.65
+  }
+};
+
+// Function to select processing time
+function selectProcessingTime(processingType) {
+  // Remove selected class from all options
+  const allOptions = document.querySelectorAll('.app-processing-option');
+  allOptions.forEach(option => {
+    option.classList.remove('app-processing-option-selected');
+  });
+
+  // Add selected class to clicked option
+  const selectedOption = document.querySelector(`[data-processing="${processingType}"]`);
+  if (selectedOption) {
+    selectedOption.classList.add('app-processing-option-selected');
+  }
+
+  // Update radio button
+  const radio = document.getElementById(`processing-${processingType}`);
+  if (radio) {
+    radio.checked = true;
+  }
+
+  // Update order summary
+  updateCheckoutSummary(processingType);
+}
+
+// Function to update checkout summary
+function updateCheckoutSummary(processingType) {
+  const pricing = processingPricing[processingType];
+  if (!pricing) return;
+
+  const processingLabel = document.getElementById('checkout-processing-label');
+  const processingPrice = document.getElementById('checkout-processing-price');
+  const total = document.getElementById('checkout-total');
+
+  if (processingLabel) {
+    processingLabel.textContent = pricing.label;
+  }
+
+  if (processingPrice) {
+    processingPrice.textContent = `$${pricing.price.toFixed(2)}`;
+  }
+
+  if (total) {
+    total.textContent = `USD $${pricing.total.toFixed(2)}`;
+  }
+}
+
+// Function to initialize checkout step
+function initializeCheckout(formData) {
+  // Get traveler count
+  const travelerCount = formData?.numberOfApplicants || travelerData.count || 1;
+  const travelersText = travelerCount === 1 ? '1 Traveler' : `${travelerCount} Travelers`;
+
+  // Update traveler count in summary
+  const summaryTravelers = document.getElementById('checkout-summary-travelers');
+  if (summaryTravelers) {
+    summaryTravelers.textContent = travelersText;
+  }
+
+  // Set default to rush (as shown in image)
+  selectProcessingTime('rush');
+}
+
+// Function to update sidebar for checkout step
+function updateSidebarCheckout(formData) {
+  initializeCheckout(formData);
 }
 

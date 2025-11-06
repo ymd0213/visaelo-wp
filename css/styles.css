@@ -3027,6 +3027,7 @@ code {
   padding-top: 16px;
   border-top: 1px solid #e5e7eb;
   margin-top: 8px;
+  align-items: flex-start;
 }
 
 .app-summary-label {
@@ -3050,6 +3051,13 @@ code {
   font-weight: 700;
   color: #1a1a1a;
   font-size: 18px;
+}
+
+.app-summary-total-value-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
 }
 
 .app-sidebar-actions {
@@ -3223,5 +3231,145 @@ code {
 .app-radio-btn-active:hover {
   border-color: #2563eb;
   background-color: #2563eb;
+}
+
+/* ============================================
+   STEP 3: CHECKOUT - PROCESSING OPTIONS
+   ============================================ */
+.app-processing-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.app-processing-option {
+  border: 2px solid #f0f3f7;
+  border-radius: 12px;
+  padding: 20px 24px;
+  background-color: #ffffff;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.app-processing-option:hover {
+  border-color: #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.app-processing-option-selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.app-processing-option-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.app-processing-option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.app-processing-option-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.app-processing-option-label {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.app-processing-option-radio {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.app-radio-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+.app-radio-label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.app-radio-input:checked + .app-radio-label {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+}
+
+.app-radio-input:checked + .app-radio-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.app-processing-option-selected .app-radio-label {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+}
+
+.app-processing-option-selected .app-radio-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.app-summary-subtitle {
+  font-size: 14px;
+  color: #9ca3af;
+  text-align: right;
+  line-height: 1.4;
+}
+
+/* Responsive Styles for Step 3 */
+@media (max-width: 768px) {
+  .app-processing-option {
+    padding: 16px 20px;
+  }
+
+  .app-processing-option-content {
+    gap: 16px;
+  }
+
+  .app-processing-option-price {
+    font-size: 18px;
+  }
+
+  .app-processing-option-label {
+    font-size: 14px;
+  }
 }
 
