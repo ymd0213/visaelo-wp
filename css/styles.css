@@ -1,7 +1,7 @@
 /* ============================================
    GLOBAL STYLES
    ============================================ */
-:root {
+/* :root {
   --color-primary: #007bff;
   --color-secondary: #6c757d;
   --color-success: #28a745;
@@ -24,7 +24,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -189,7 +189,6 @@ code {
 .hero {
   width: 100%;
   max-width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -217,6 +216,7 @@ code {
   display: block;
   border-radius: 24px;
   object-fit: cover;
+  object-position: center;
 }
 
 .hero-container-wrapper {
@@ -409,6 +409,7 @@ code {
   display: block;
   border-radius: 24px;
   object-fit: cover;
+  object-position: center;
 }
 
 /* ============================================
@@ -537,7 +538,6 @@ code {
   justify-content: center;
   color: #0066ff;
   flex-shrink: 0;
-  padding: 16px;
 }
 
 .check-icon img {
@@ -556,7 +556,6 @@ code {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  padding: 16px;
 }
 
 .cross-icon img {
@@ -579,10 +578,13 @@ code {
 .why-choose-us-bg {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   pointer-events: none;
   z-index: 0;
 }
@@ -675,7 +677,7 @@ code {
   border: 2px solid #f0f3f7;
   border-radius: 16px;
   background: #ffffff;
-  margin-top: -16px;
+  margin-top: -32px;
   overflow: hidden;
   box-shadow: -8px 8px 16px rgba(0, 0, 0, 0.08);
 }
@@ -814,13 +816,16 @@ code {
   width: 100%;
   height: 100%;
   min-height: 500px;
+  overflow: hidden;
 }
 
 .easy-process-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 16px;
+  display: block;
 }
 
 .easy-process-content {
@@ -1333,6 +1338,7 @@ code {
 
 .when-the-world-image-wrapper {
   position: relative;
+  width: 100%;
   height: 100%;
   min-height: 500px;
   border-radius: 16px;
@@ -1342,7 +1348,9 @@ code {
 .when-the-world-image {
   width: 100%;
   height: 100%;
+  min-height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 16px;
   display: block;
 }
@@ -1435,6 +1443,7 @@ code {
   position: relative;
   overflow: hidden;
   padding: 80px 0;
+  min-height: 400px;
 }
 
 .email-signup-banner::before {
@@ -1478,10 +1487,15 @@ code {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center;
 }
 
 .email-signup-content {
@@ -1719,12 +1733,59 @@ code {
 }
 
 @media (max-width: 768px) {
+  .hero-top {
+    height: 400px;
+    width: 100%;
+  }
+
+  .hero-top-bg {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .hero-bottom {
+    height: 400px;
+    width: 100%;
+  }
+
+  .hero-bottom-bg {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
   .hero-headline {
     font-size: 2.5rem;
   }
 
   .hero-subheadline {
     font-size: 1.125rem;
+  }
+
+  .hero-form-card-bg {
+    position: absolute;
+    top: 320px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    height: auto;
+    min-height: 200px;
+  }
+
+  .hero-form-card {
+    position: absolute;
+    top: 320px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    padding: 1.5rem;
   }
 
   .hero-form-row {
@@ -1742,6 +1803,16 @@ code {
 
   .why-choose-us {
     padding: 16px 20px;
+    position: relative;
+    min-height: 400px;
+  }
+
+  .why-choose-us-bg {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .why-choose-us-title {
@@ -1750,6 +1821,10 @@ code {
 
   .why-choose-us-comparison {
     grid-template-columns: 1fr;
+  }
+
+  .comparison-column:nth-child(2) {
+    margin-left: 0;
   }
 
   .comparison-title {
@@ -1762,10 +1837,6 @@ code {
 
   .comparison-item-description {
     font-size: 13px;
-  }
-
-  .stats-section {
-    padding: 32px 16px;
   }
 
   .stats-section-container {
@@ -1795,13 +1866,32 @@ code {
     right: -6px;
   }
 
+  .easy-process {
+    max-height: none;
+  }
+
   .easy-process-container {
     grid-template-columns: 1fr;
     gap: 40px;
+    max-height: none;
   }
 
   .easy-process-image-wrapper {
     min-height: 300px;
+    width: 100%;
+    height: 300px;
+    position: relative;
+  }
+
+  .easy-process-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center;
   }
 
   .easy-process-content {
@@ -1874,10 +1964,6 @@ code {
     font-size: 14px;
   }
 
-  .when-the-world {
-    padding: 16px 20px;
-  }
-
   .when-the-world-container {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1891,6 +1977,20 @@ code {
   .when-the-world-image-wrapper {
     order: 2;
     min-height: 400px;
+    width: 100%;
+    height: 400px;
+    position: relative;
+  }
+
+  .when-the-world-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    object-fit: cover;
+    object-position: center;
   }
 
   .when-the-world-headline {
@@ -1903,7 +2003,6 @@ code {
 
   .inc-5000-banner {
     padding: 60px 0;
-    margin: 24px 0;
   }
 
   .inc-5000-container {
@@ -1934,7 +2033,21 @@ code {
 
   .email-signup-banner {
     padding: 60px 0;
-    margin: 24px 0;
+    min-height: 350px;
+    position: relative;
+  }
+
+  .email-signup-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    object-fit: cover;
+    object-position: center;
   }
 
   .email-signup-container {
@@ -1997,6 +2110,28 @@ code {
 }
 
 @media (max-width: 480px) {
+  .hero-top {
+    height: 350px;
+  }
+
+  .hero-bottom {
+    height: 350px;
+  }
+
+  .hero-form-card-bg {
+    top: 280px;
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+    padding: 0;
+  }
+
+  .hero-form-card {
+    top: 280px;
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+    padding: 1.25rem;
+  }
+
   .why-choose-us {
     padding: 16px 16px;
   }
@@ -2008,10 +2143,6 @@ code {
   .comparison-item {
     gap: 12px;
     padding: 16px;
-  }
-
-  .stats-section {
-    padding: 24px 16px;
   }
 
   .stats-section-container {
@@ -2073,9 +2204,7 @@ code {
   }
 
   .easy-process-step-connector {
-    left: 22px;
-    top: 50px;
-    height: calc(100% + 16px);
+    left: 38px;
   }
 
   .testimonials-section {
@@ -2137,10 +2266,6 @@ code {
     font-size: 13px;
   }
 
-  .when-the-world {
-    padding: 16px 16px;
-  }
-
   .when-the-world-content {
     padding: 30px 16px;
   }
@@ -2155,6 +2280,20 @@ code {
 
   .when-the-world-image-wrapper {
     min-height: 300px;
+    width: 100%;
+    height: 300px;
+    position: relative;
+  }
+
+  .when-the-world-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center;
   }
 }
 
