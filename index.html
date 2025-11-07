@@ -14,37 +14,38 @@
             <!-- Hero Section -->
             <div class="hero">
                 <div class="hero-top">
-                    <img src="/wp-content/themes/hello-theme-child-master/assets/images/backgrounds/hero_top.png" alt="" class="hero-top-bg">
                     <div class="hero-container-wrapper">
-                        <!-- Navbar -->
-                        <!-- <nav class="hero-navbar">
-                            <div class="navbar-container">
-                                <div class="navbar-logo">
-                                    <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/logo.png" alt="visaelo" class="logo-img">
-                                </div>
-                                <div class="navbar-right">
-                                    <div class="navbar-lang-currency">
-                                        <span class="lang-currency-item">en</span>
-                                        <span class="lang-currency-item">usd</span>
-                                    </div>
-                                    <button class="icon-btn icon-btn-primary icon-btn-md hero-signup-btn">
-                                        <span class="icon-btn-icon icon-btn-icon-left">
-                                            <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/icon_turn_right.png" alt="" style="width: 16px; height: 16px;">
-                                        </span>
-                                        <span class="icon-btn-text">Sign up</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </nav> -->
                         <div class="hero-container">
                             <div class="hero-content">
-                                <h1 class="hero-headline">
-                                    The quickest way to get your
-                                    <span class="hero-headline-underline">travel visa</span>
-                                </h1>
-                                <p class="hero-subheadline">
-                                    From application to approval, we handle the hard part.
-                                </p>
+                                <!-- Visual Flow Icons -->
+                                <div class="hero-visual-flow">
+                                    <div class="hero-flow-icon hero-flow-icon-left">
+                                        <div class="brand-icon hero-flow-icon-circle">
+                                            <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/icon_calendar_green.png" alt="Calendar" class="hero-flow-icon-img">
+                                        </div>
+                                    </div>
+                                    <div class="hero-flow-icon hero-flow-icon-center">
+                                        <div class="brand-icon hero-flow-icon-circle">
+                                            <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/icon_passport_plane.png" alt="Passport" class="hero-flow-icon-img">
+                                        </div>
+                                    </div>
+                                    <div class="hero-flow-icon hero-flow-icon-right">
+                                        <div class="brand-icon hero-flow-icon-circle">
+                                            <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/icon_location.png" alt="Location" class="hero-flow-icon-img">
+                                        </div>
+                                    </div>
+                                    <div class="hero-flow-arc-circle"></div>
+                                </div>                                
+                                <div class="hero-headline-wrapper">
+                                    <h1 class="hero-headline">
+                                        <span class="hero-headline-highlight">The quickest</span> 
+                                        <span class="hero-headline-secondline"> way to get your</span>
+                                        <span class="hero-headline-underline">travel visa</span>
+                                    </h1>
+                                    <p class="hero-subheadline">
+                                        From application to approval, we handle the hard part.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +99,7 @@
 
                 <!-- Bottom Section -->
                 <div class="hero-bottom">
-                    <img src="/wp-content/themes/hello-theme-child-master/assets/images/backgrounds/hero_bottom.png" alt="" class="hero-bottom-bg">
+                    <img src="/wp-content/themes/hello-theme-child-master/assets/images/backgrounds/hero_bottom.png" alt="Hero bottom background" class="hero-bottom-bg">
                 </div>
             </div>
 
@@ -121,9 +122,24 @@
                     </div>
 
                     <div class="why-choose-us-comparison">
-                        <div class="comparison-column">
-                            <h3 class="comparison-title">Do it yourself</h3>
-                            <div class="comparison-items">
+                        <div class="comparison-title-wrapper">
+                            <button class="comparison-nav-button comparison-nav-button-prev" id="comparison-prev" aria-label="Previous comparison">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <h3 class="comparison-title-mobile">Do it yourself</h3>
+                            <button class="comparison-nav-button comparison-nav-button-next" id="comparison-next" aria-label="Next comparison">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="comparison-carousel">
+                            <div class="comparison-carousel-track" id="comparison-track">
+                                <div class="comparison-column">
+                                    <h3 class="comparison-title comparison-title-desktop">Do it yourself</h3>
+                                    <div class="comparison-items">
                                 <div class="comparison-item">
                                     <div class="cross-icon">
                                         <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/icon_cross.png" alt="cross">
@@ -160,14 +176,14 @@
                                         <p class="comparison-item-description">Few payment options, fixed hours, and no progress saving.</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="comparison-column">
-                            <h3 class="comparison-title">
-                                With Visaelo<span class="brand-name">.</span>
-                            </h3>
-                            <div class="comparison-items">
+                                <div class="comparison-column">
+                                    <h3 class="comparison-title comparison-title-desktop">
+                                        With Visaelo<span class="brand-name">.</span>
+                                    </h3>
+                                    <div class="comparison-items">
                                 <div class="comparison-item">
                                     <div class="check-icon">
                                         <img src="/wp-content/themes/hello-theme-child-master/assets/images/icons/icon_check.png" alt="check">
@@ -211,6 +227,8 @@
                                         </span>
                                         <span class="icon-btn-text">Get started</span>
                                     </button>
+                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

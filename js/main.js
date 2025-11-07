@@ -280,6 +280,101 @@ class TestimonialsCarousel {
   }
 }
 
+// Comparison Carousel (Mobile Only)
+class ComparisonCarousel {
+  constructor() {
+    this.track = document.getElementById('comparison-track');
+    this.prevButton = document.getElementById('comparison-prev');
+    this.nextButton = document.getElementById('comparison-next');
+    this.mobileTitle = document.querySelector('.comparison-title-mobile');
+    this.columns = document.querySelectorAll('.comparison-column');
+    this.currentIndex = 0;
+    
+    // Extract titles from desktop titles
+    this.titles = Array.from(this.columns).map(column => {
+      const titleElement = column.querySelector('.comparison-title-desktop');
+      if (titleElement) {
+        return titleElement.textContent.trim();
+      }
+      return '';
+    });
+
+    if (!this.track || !this.prevButton || !this.nextButton) {
+      return; // Elements don't exist, skip initialization
+    }
+
+    this.init();
+    this.updateResponsive();
+    window.addEventListener('resize', () => this.updateResponsive());
+  }
+
+  init() {
+    this.attachEventListeners();
+    this.updateCarousel();
+    // Set initial title
+    if (this.mobileTitle && this.titles[0]) {
+      this.mobileTitle.textContent = this.titles[0];
+    }
+  }
+
+  updateResponsive() {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      this.updateCarousel();
+    } else {
+      // Reset on desktop
+      if (this.track) {
+        this.track.style.transform = 'none';
+      }
+    }
+  }
+
+  attachEventListeners() {
+    this.prevButton.addEventListener('click', () => this.prev());
+    this.nextButton.addEventListener('click', () => this.next());
+  }
+
+  prev() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.updateCarousel();
+    }
+  }
+
+  next() {
+    if (this.currentIndex < this.columns.length - 1) {
+      this.currentIndex++;
+      this.updateCarousel();
+    }
+  }
+
+  updateCarousel() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (!isMobile) {
+      return; // Don't update carousel on desktop
+    }
+
+    const translateX = -(this.currentIndex * 100);
+    if (this.track) {
+      this.track.style.transform = `translateX(${translateX}%)`;
+    }
+
+    // Update button states
+    if (this.prevButton) {
+      this.prevButton.disabled = this.currentIndex === 0;
+    }
+    if (this.nextButton) {
+      this.nextButton.disabled = this.currentIndex >= this.columns.length - 1;
+    }
+
+    // Update mobile title
+    if (this.mobileTitle && this.titles[this.currentIndex]) {
+      this.mobileTitle.textContent = this.titles[this.currentIndex];
+    }
+  }
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom selects (only if elements exist)
@@ -329,7 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
             newWrapper.style.display = 'flex';
             newWrapper.style.alignItems = 'center';
             newWrapper.style.justifyContent = 'center';
-            newWrapper.style.gap = '16px';
             
             // Clone buttons
             const prevClone = prevButton.cloneNode(true);
@@ -391,6 +485,12 @@ document.addEventListener('DOMContentLoaded', () => {
         moveButtonsForMobile();
       }, 250);
     });
+  }
+
+  // Initialize comparison carousel (only if element exists)
+  const comparisonTrack = document.getElementById('comparison-track');
+  if (comparisonTrack) {
+    const comparisonCarousel = new ComparisonCarousel();
   }
 });
 
