@@ -933,6 +933,17 @@ code {
     opacity: 0.5;
   }
 
+  .comparison-nav-button-prev {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: #ffffff;
+  }
+
+  .comparison-nav-button-prev:hover:not(:disabled) {
+    background: #2563eb;
+    border-color: #2563eb;
+  }
+
   .comparison-nav-button-next {
     background: #3b82f6;
     border-color: #3b82f6;
